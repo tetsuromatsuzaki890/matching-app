@@ -1,134 +1,153 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>マッチングアプリ運用代行</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>マッチングアプリ運用代行</title>
 
-  <style>
-    body {
-      margin: 0;
-      font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-      background: #000;
-      color: #fff;
-      line-height: 1.7;
-    }
+<style>
+body {
+  margin: 0;
+  font-family: "Helvetica Neue", sans-serif;
+  background: #f7f9fc;
+  color: #333;
+}
 
-    .container {
-      max-width: 800px;
-      margin: auto;
-      padding: 40px 20px;
-    }
+/* 共通 */
+.container {
+  max-width: 900px;
+  margin: auto;
+  padding: 40px 20px;
+}
 
-    h1 {
-      font-size: 28px;
-      text-align: center;
-      margin-top: 60px;
-      margin-bottom: 20px;
-    }
+h1 {
+  font-size: 32px;
+  text-align: center;
+  margin-bottom: 20px;
+}
 
-    h2 {
-      font-size: 20px;
-      margin-top: 60px;
-    }
+h2 {
+  font-size: 24px;
+  margin-top: 60px;
+  text-align: center;
+}
 
-    p {
-      color: #ccc;
-    }
+p {
+  color: #555;
+  text-align: center;
+}
 
-    ul {
-      color: #ccc;
-      padding-left: 20px;
-    }
+/* ヘッダー */
+.hero {
+  background: linear-gradient(135deg, #4facfe, #00f2fe);
+  color: white;
+  padding: 100px 20px;
+  text-align: center;
+}
 
-    .box {
-      background: #111;
-      padding: 20px;
-      border-radius: 8px;
-      margin-top: 20px;
-    }
+.hero h1 {
+  font-size: 34px;
+}
 
-    .cta {
-      text-align: center;
-      margin-top: 80px;
-    }
+.hero p {
+  color: rgba(255,255,255,0.9);
+}
 
-    .cta a {
-      display: inline-block;
-      padding: 12px 30px;
-      border: 1px solid #fff;
-      border-radius: 30px;
-      color: #fff;
-      text-decoration: none;
-      margin-top: 20px;
-    }
+/* カード */
+.card {
+  background: white;
+  padding: 25px;
+  border-radius: 10px;
+  margin-top: 20px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+}
 
-    .cta a:hover {
-      background: #fff;
-      color: #000;
-    }
+/* ボタン */
+.btn {
+  display: inline-block;
+  background: #4facfe;
+  color: white;
+  padding: 15px 30px;
+  border-radius: 30px;
+  text-decoration: none;
+  margin-top: 20px;
+  font-weight: bold;
+}
 
-    footer {
-      text-align: center;
-      font-size: 12px;
-      color: #777;
-      margin-top: 80px;
-    }
-  </style>
+.btn:hover {
+  opacity: 0.9;
+}
+
+/* CTA */
+.cta {
+  text-align: center;
+  padding: 80px 20px;
+  background: white;
+  margin-top: 80px;
+}
+
+/* フッター */
+footer {
+  text-align: center;
+  font-size: 12px;
+  color: #888;
+  padding: 40px;
+}
+</style>
 </head>
 
 <body>
 
-  <div class="container">
+<!-- ヒーロー -->
+<div class="hero">
+  <h1>マッチングアプリ運用代行</h1>
+  <p>時間を使わず、出会いの母数を増やす</p>
+  <a href="#" class="btn">無料で相談する</a>
+</div>
 
-    <h1>マッチングアプリ運用代行</h1>
+<div class="container">
 
-    <p style="text-align:center;">
-      時間を使わず、無理せず、<br>
-      出会いの「母数」を増やす。
-    </p>
+  <!-- 悩み -->
+  <h2>こんな悩みありませんか？</h2>
 
-    <h2>こんな方におすすめ</h2>
-    <ul>
-      <li>マッチしない</li>
-      <li>プロフィールが弱い</li>
-      <li>時間がない</li>
-      <li>改善方法がわからない</li>
-    </ul>
+  <div class="card">マッチしない</div>
+  <div class="card">プロフィールが弱い</div>
+  <div class="card">何を改善すればいいかわからない</div>
 
-    <h2>サービス内容</h2>
+  <!-- サービス -->
+  <h2>サービス内容</h2>
 
-    <div class="box">
-      <h3>プロフィール設計</h3>
-      <p>写真・文章を最適化</p>
-    </div>
-
-    <div class="box">
-      <h3>運用代行</h3>
-      <p>日々の運用を最適化</p>
-    </div>
-
-    <div class="box">
-      <h3>改善</h3>
-      <p>数値ベースで改善</p>
-    </div>
-
-    <h2>実績</h2>
-    <p>
-      累計マッチ数 1,200件以上<br>
-      ※一部データ
-    </p>
-
-    <div class="cta">
-      <h2>お問い合わせ</h2>
-      <a href="#">LINEで相談</a>
-    </div>
-
-    <footer>
-      ※成果には個人差があります
-    </footer>
-
+  <div class="card">
+    <h3>プロフィール設計</h3>
+    <p>写真・文章を最適化</p>
   </div>
+
+  <div class="card">
+    <h3>運用代行</h3>
+    <p>日々の運用を改善</p>
+  </div>
+
+  <div class="card">
+    <h3>データ改善</h3>
+    <p>数値ベースで最適化</p>
+  </div>
+
+  <!-- 実績 -->
+  <h2>実績</h2>
+  <p>累計マッチ数 1,200件以上</p>
+
+</div>
+
+<!-- CTA -->
+<div class="cta">
+  <h2>まずは無料で相談</h2>
+  <p>現在、少人数のみ受付中</p>
+  <a href="#" class="btn">LINEで相談する</a>
+</div>
+
+<footer>
+  ※成果には個人差があります
+</footer>
 
 </body>
 </html>
