@@ -8,38 +8,21 @@
 <style>
 body {
   margin: 0;
-  font-family: "Helvetica Neue", sans-serif;
-  background: #f7f9fc;
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  background: #f5f7fb;
   color: #333;
 }
 
-/* 共通 */
+/* 全体 */
 .container {
-  max-width: 900px;
+  max-width: 1000px;
   margin: auto;
   padding: 40px 20px;
 }
 
-h1 {
-  font-size: 32px;
-  text-align: center;
-  margin-bottom: 20px;
-}
-
-h2 {
-  font-size: 24px;
-  margin-top: 60px;
-  text-align: center;
-}
-
-p {
-  color: #555;
-  text-align: center;
-}
-
-/* ヘッダー */
+/* ヒーロー */
 .hero {
-  background: linear-gradient(135deg, #4facfe, #00f2fe);
+  background: linear-gradient(135deg, #6dd5ed, #2193b0);
   color: white;
   padding: 100px 20px;
   text-align: center;
@@ -47,43 +30,68 @@ p {
 
 .hero h1 {
   font-size: 34px;
+  margin-bottom: 10px;
 }
 
 .hero p {
-  color: rgba(255,255,255,0.9);
-}
-
-/* カード */
-.card {
-  background: white;
-  padding: 25px;
-  border-radius: 10px;
-  margin-top: 20px;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+  opacity: 0.9;
 }
 
 /* ボタン */
 .btn {
   display: inline-block;
-  background: #4facfe;
-  color: white;
-  padding: 15px 30px;
+  background: white;
+  color: #2193b0;
+  padding: 14px 30px;
   border-radius: 30px;
-  text-decoration: none;
   margin-top: 20px;
+  text-decoration: none;
   font-weight: bold;
 }
 
 .btn:hover {
-  opacity: 0.9;
+  opacity: 0.85;
+}
+
+/* セクション */
+h2 {
+  text-align: center;
+  margin-top: 80px;
+}
+
+/* カード */
+.grid {
+  display: grid;
+  gap: 20px;
+  margin-top: 30px;
+}
+
+.card {
+  background: white;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+}
+
+/* 実績画像 */
+.result {
+  margin-top: 30px;
+  text-align: center;
+}
+
+.result img {
+  width: 100%;
+  max-width: 500px;
+  border-radius: 15px;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.1);
 }
 
 /* CTA */
 .cta {
   text-align: center;
-  padding: 80px 20px;
+  margin-top: 100px;
+  padding: 60px 20px;
   background: white;
-  margin-top: 80px;
 }
 
 /* フッター */
@@ -101,7 +109,7 @@ footer {
 <!-- ヒーロー -->
 <div class="hero">
   <h1>マッチングアプリ運用代行</h1>
-  <p>時間を使わず、出会いの母数を増やす</p>
+  <p>出会いの母数を最大化する運用設計</p>
   <a href="#" class="btn">無料で相談する</a>
 </div>
 
@@ -110,31 +118,39 @@ footer {
   <!-- 悩み -->
   <h2>こんな悩みありませんか？</h2>
 
-  <div class="card">マッチしない</div>
-  <div class="card">プロフィールが弱い</div>
-  <div class="card">何を改善すればいいかわからない</div>
+  <div class="grid">
+    <div class="card">マッチしない</div>
+    <div class="card">プロフィールが弱い</div>
+    <div class="card">改善方法がわからない</div>
+  </div>
 
   <!-- サービス -->
   <h2>サービス内容</h2>
 
-  <div class="card">
-    <h3>プロフィール設計</h3>
-    <p>写真・文章を最適化</p>
-  </div>
+  <div class="grid">
+    <div class="card">
+      <h3>プロフィール設計</h3>
+      <p>写真・文章を最適化</p>
+    </div>
 
-  <div class="card">
-    <h3>運用代行</h3>
-    <p>日々の運用を改善</p>
-  </div>
+    <div class="card">
+      <h3>運用代行</h3>
+      <p>日々の運用を改善</p>
+    </div>
 
-  <div class="card">
-    <h3>データ改善</h3>
-    <p>数値ベースで最適化</p>
+    <div class="card">
+      <h3>データ改善</h3>
+      <p>数値ベースで最適化</p>
+    </div>
   </div>
 
   <!-- 実績 -->
   <h2>実績</h2>
-  <p>累計マッチ数 1,200件以上</p>
+  <p style="text-align:center;">累計マッチ数 1,200件以上</p>
+
+  <div class="result">
+    <img src="result.jpg">
+  </div>
 
 </div>
 
