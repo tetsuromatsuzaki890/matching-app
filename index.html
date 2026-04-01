@@ -67,7 +67,6 @@ gap: 28px;
 }
 
 @media(min-width:768px){
-.grid-2 {grid-template-columns: repeat(2,1fr);}
 .grid-3 {grid-template-columns: repeat(3,1fr);}
 .grid-4 {grid-template-columns: repeat(4,1fr);}
 }
@@ -82,9 +81,6 @@ display: flex;
 flex-direction: column;
 justify-content: center;
 }
-
-.card h3 {font-size: 18px;margin-bottom: 10px;}
-.card p {font-size: 14px;line-height: 1.6;min-height: 40px;}
 
 .result {text-align: center;}
 .result-main {font-size: 64px;color: #ff7a00;font-weight: bold;}
@@ -115,6 +111,7 @@ color:#666;
 
 <body>
 
+<!-- HERO -->
 <div class="hero">
 <h1>
 マッチ数が増えない人へ<br>
@@ -124,8 +121,29 @@ color:#666;
 <a href="#" class="btn">無料でマッチ率を診断する</a>
 </div>
 
+<!-- 対応アプリ -->
+<div style="padding:60px 20px;background:#f7f9fc;">
+<h2 style="text-align:center;margin-bottom:30px;">対応マッチングアプリ</h2>
+
+<div style="display:flex;flex-wrap:wrap;justify-content:center;gap:15px;">
+
+<div style="background:#fff;padding:12px 20px;border-radius:30px;box-shadow:0 5px 15px rgba(0,0,0,0.05);">東カレデート</div>
+<div style="background:#fff;padding:12px 20px;border-radius:30px;box-shadow:0 5px 15px rgba(0,0,0,0.05);">Tinder</div>
+<div style="background:#fff;padding:12px 20px;border-radius:30px;box-shadow:0 5px 15px rgba(0,0,0,0.05);">Pairs</div>
+<div style="background:#fff;padding:12px 20px;border-radius:30px;box-shadow:0 5px 15px rgba(0,0,0,0.05);">with</div>
+<div style="background:#fff;padding:12px 20px;border-radius:30px;box-shadow:0 5px 15px rgba(0,0,0,0.05);">Omiai</div>
+
+</div>
+
+<p style="text-align:center;margin-top:20px;color:#666;">
+※東カレデートでの実績多数
+</p>
+</div>
+
+<!-- 悩み -->
 <div class="section">
 <h2>こんな悩みありませんか？</h2>
+
 <div class="grid grid-3">
 <div class="card">マッチしない</div>
 <div class="card">何を送ればいいかわからない</div>
@@ -133,37 +151,77 @@ color:#666;
 </div>
 </div>
 
+<!-- 実績 -->
 <div class="section result">
 <h2>実績</h2>
+
 <div class="result-main">1,600件以上</div>
 <div class="result-sub">累計マッチ数（東カレデートのアプリのみ）</div>
+
 <img src="ここに実績画像URL">
+
 <a href="#" class="btn">今すぐ無料で相談する</a>
 </div>
 
+<!-- サービス -->
 <div class="section">
 <h2>サービス内容</h2>
+
 <div class="grid grid-3">
-<div class="card"><h3>プロフィール最適化</h3><p>マッチ率を上げる設計</p></div>
-<div class="card"><h3>メッセージ運用</h3><p>返信率・デート率を改善</p></div>
-<div class="card"><h3>日程調整</h3><p>デート成立までサポート</p></div>
+<div class="card">
+<h3>プロフィール最適化</h3>
+<p>マッチ率を上げる設計</p>
+</div>
+
+<div class="card">
+<h3>メッセージ運用</h3>
+<p>返信率・デート率を改善</p>
+</div>
+
+<div class="card">
+<h3>日程調整</h3>
+<p>デート成立までサポート</p>
+</div>
 </div>
 </div>
 
+<!-- 仕組み -->
 <div class="section">
 <h2>なぜ成果に繋がるのか？</h2>
+
 <div class="grid grid-3">
-<div class="card"><h3>① プロフィール設計</h3><p>第1印象でマッチ率が変わる</p></div>
-<div class="card"><h3>② 初手メッセージ</h3><p>1通目でマッチするかどうかが決まる</p></div>
-<div class="card"><h3>③ デートまで導線設計</h3><p>LINE交換・日程調整まで繋げる</p></div>
-</div>
-<p style="text-align:center;margin-top:30px;font-weight:bold;">マッチだけで終わらせず、出会いまで繋げます</p>
-<p style="text-align:center;margin-top:10px;color:#666;">LINE交換・日程調整まで一貫してサポート</p>
+<div class="card">
+<h3>① プロフィール設計</h3>
+<p>第1印象でマッチ率が変わる</p>
 </div>
 
+<div class="card">
+<h3>② 初手メッセージ</h3>
+<p>1通目でマッチするかどうかが決まる</p>
+</div>
+
+<div class="card">
+<h3>③ デートまで導線設計</h3>
+<p>LINE交換・日程調整まで繋げる</p>
+</div>
+</div>
+
+<p style="text-align:center;margin-top:30px;font-weight:bold;">
+マッチだけで終わらせず、出会いまで繋げます
+</p>
+
+<p style="text-align:center;margin-top:10px;color:#666;">
+LINE交換・日程調整まで一貫してサポート
+</p>
+</div>
+
+<!-- 料金 -->
 <div class="section">
 <h2>料金体系</h2>
-<p style="text-align:center;font-weight:bold;color:#ff7a00;">完全成果報酬型なのでリスクゼロで始められます</p>
+
+<p style="text-align:center;font-weight:bold;color:#ff7a00;">
+完全成果報酬型なのでリスクゼロで始められます
+</p>
 
 <div class="grid grid-4">
 <div class="card"><h3>初期費用</h3><p>0円</p></div>
@@ -172,15 +230,22 @@ color:#666;
 <div class="card"><h3>日程調整</h3><p>税込み660円 / 件</p></div>
 </div>
 
-<p style="text-align:center;margin-top:20px;color:#666;">※マッチングアプリの有料会員への課金が別途必要です</p>
-<p style="text-align:center;margin-top:20px;font-weight:bold;">マッチ後のLINE交換・日程調整までサポートします</p>
+<p style="text-align:center;margin-top:20px;">
+週払い（毎週日曜締め・翌月曜請求／1日以内支払い・未払い時は運用停止および契約解除）
+</p>
+
+<p style="text-align:center;margin-top:20px;color:#666;">
+※マッチングアプリの有料会員への課金が別途必要です
+</p>
 </div>
 
+<!-- CTA -->
 <div class="cta">
 <h2>まずは無料で相談</h2>
 <a href="#" class="btn">LINEで無料相談する</a>
 </div>
 
+<!-- フッター -->
 <div class="footer">
 <a href="tokusho.html">特定商取引法に基づく表記</a> |
 <a href="privacy.html">プライバシーポリシー</a> |
