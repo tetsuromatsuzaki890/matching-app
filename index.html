@@ -86,11 +86,20 @@ padding: 35px;
 border-radius: 18px;
 text-align: center;
 box-shadow: 0 15px 40px rgba(0,0,0,0.05);
-transition: 0.3s;
+display: flex;
+flex-direction: column;
+justify-content: center;
 }
 
-.card:hover {
-transform: translateY(-6px);
+.card h3 {
+font-size: 18px;
+margin-bottom: 10px;
+}
+
+.card p {
+font-size: 14px;
+line-height: 1.6;
+min-height: 40px;
 }
 
 /* 実績 */
@@ -122,10 +131,6 @@ box-shadow: 0 20px 50px rgba(0,0,0,0.15);
 background: #f0f4f8;
 text-align: center;
 padding: 140px 20px;
-}
-
-.cta h2 {
-margin-bottom: 20px;
 }
 </style>
 </head>
@@ -174,12 +179,12 @@ margin-bottom: 20px;
 <div class="grid grid-3">
 <div class="card">
 <h3>プロフィール最適化</h3>
-<p>マッチ率が上がる設計</p>
+<p>マッチ率を上げる設計</p>
 </div>
 
 <div class="card">
 <h3>メッセージ運用</h3>
-<p>返信率・デート率を最大化</p>
+<p>返信率・デート率を改善</p>
 </div>
 
 <div class="card">
@@ -201,28 +206,22 @@ margin-bottom: 20px;
 
 <div class="card">
 <h3>初期費用</h3>
-<p style="font-size:30px;font-weight:bold;">0円</p>
+<p>0円</p>
 </div>
 
 <div class="card" style="border:2px solid #ff7a00;">
 <h3>マッチ</h3>
-<p style="font-size:34px;font-weight:bold;color:#ff7a00;">
-330円 / 件
-</p>
+<p>330円 / 件</p>
 </div>
 
 <div class="card">
 <h3>LINE交換</h3>
-<p style="font-size:30px;font-weight:bold;">
-660円 / 件
-</p>
+<p>660円 / 件</p>
 </div>
 
 <div class="card">
 <h3>日程調整</h3>
-<p style="font-size:30px;font-weight:bold;">
-660円 / 件
-</p>
+<p>660円 / 件</p>
 </div>
 
 </div>
