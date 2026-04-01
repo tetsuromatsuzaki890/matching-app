@@ -14,7 +14,6 @@ color: #333;
 line-height: 1.7;
 }
 
-/* HERO */
 .hero {
 background: linear-gradient(135deg, #5ec6f0, #3aa4e6);
 color: white;
@@ -33,7 +32,6 @@ margin-top: 15px;
 opacity: 0.9;
 }
 
-/* ボタン */
 .btn {
 background: linear-gradient(135deg, #ff7a00, #ff9a3c);
 color: white;
@@ -51,7 +49,6 @@ transition: 0.3s;
 transform: translateY(-4px);
 }
 
-/* セクション */
 .section {
 padding: 120px 20px;
 max-width: 1000px;
@@ -64,25 +61,17 @@ font-size: 30px;
 margin-bottom: 70px;
 }
 
-/* グリッド */
 .grid {
 display: grid;
 gap: 28px;
 }
 
 @media(min-width:768px){
-.grid-2 {
-grid-template-columns: repeat(2,1fr);
-}
-.grid-3 {
-grid-template-columns: repeat(3,1fr);
-}
-.grid-4 {
-grid-template-columns: repeat(4,1fr);
-}
+.grid-2 {grid-template-columns: repeat(2,1fr);}
+.grid-3 {grid-template-columns: repeat(3,1fr);}
+.grid-4 {grid-template-columns: repeat(4,1fr);}
 }
 
-/* カード */
 .card {
 background: #f7f9fc;
 padding: 35px;
@@ -94,32 +83,12 @@ flex-direction: column;
 justify-content: center;
 }
 
-.card h3 {
-font-size: 18px;
-margin-bottom: 10px;
-}
+.card h3 {font-size: 18px;margin-bottom: 10px;}
+.card p {font-size: 14px;line-height: 1.6;min-height: 40px;}
 
-.card p {
-font-size: 14px;
-line-height: 1.6;
-min-height: 40px;
-}
-
-/* 実績 */
-.result {
-text-align: center;
-}
-
-.result-main {
-font-size: 64px;
-color: #ff7a00;
-font-weight: bold;
-}
-
-.result-sub {
-margin-top: 10px;
-color: #666;
-}
+.result {text-align: center;}
+.result-main {font-size: 64px;color: #ff7a00;font-weight: bold;}
+.result-sub {margin-top: 10px;color: #666;}
 
 .result img {
 width: 100%;
@@ -129,18 +98,23 @@ border-radius: 20px;
 box-shadow: 0 20px 50px rgba(0,0,0,0.15);
 }
 
-/* CTA */
 .cta {
 background: #f0f4f8;
 text-align: center;
 padding: 140px 20px;
+}
+
+.footer {
+text-align:center;
+padding:40px 0;
+font-size:12px;
+color:#666;
 }
 </style>
 </head>
 
 <body>
 
-<!-- HERO -->
 <div class="hero">
 <h1>
 マッチ数が増えない人へ<br>
@@ -150,10 +124,8 @@ padding: 140px 20px;
 <a href="#" class="btn">無料でマッチ率を診断する</a>
 </div>
 
-<!-- 悩み -->
 <div class="section">
 <h2>こんな悩みありませんか？</h2>
-
 <div class="grid grid-3">
 <div class="card">マッチしない</div>
 <div class="card">何を送ればいいかわからない</div>
@@ -161,120 +133,57 @@ padding: 140px 20px;
 </div>
 </div>
 
-<!-- 実績 -->
 <div class="section result">
 <h2>実績</h2>
-
 <div class="result-main">1,600件以上</div>
 <div class="result-sub">累計マッチ数（東カレデートのアプリのみ）</div>
-
 <img src="ここに実績画像URL">
-
-<div style="margin-top:50px;">
 <a href="#" class="btn">今すぐ無料で相談する</a>
 </div>
-</div>
 
-<!-- サービス -->
 <div class="section">
 <h2>サービス内容</h2>
-
 <div class="grid grid-3">
-<div class="card">
-<h3>プロフィール最適化</h3>
-<p>マッチ率を上げる設計</p>
-</div>
-
-<div class="card">
-<h3>メッセージ運用</h3>
-<p>返信率・デート率を改善</p>
-</div>
-
-<div class="card">
-<h3>日程調整</h3>
-<p>デート成立までサポート</p>
-</div>
+<div class="card"><h3>プロフィール最適化</h3><p>マッチ率を上げる設計</p></div>
+<div class="card"><h3>メッセージ運用</h3><p>返信率・デート率を改善</p></div>
+<div class="card"><h3>日程調整</h3><p>デート成立までサポート</p></div>
 </div>
 </div>
 
-<!-- 仕組み -->
 <div class="section">
 <h2>なぜ成果に繋がるのか？</h2>
-
 <div class="grid grid-3">
-
-<div class="card">
-<h3>① プロフィール設計</h3>
-<p>第1印象でマッチ率が変わる</p>
+<div class="card"><h3>① プロフィール設計</h3><p>第1印象でマッチ率が変わる</p></div>
+<div class="card"><h3>② 初手メッセージ</h3><p>1通目でマッチするかどうかが決まる</p></div>
+<div class="card"><h3>③ デートまで導線設計</h3><p>LINE交換・日程調整まで繋げる</p></div>
+</div>
+<p style="text-align:center;margin-top:30px;font-weight:bold;">マッチだけで終わらせず、出会いまで繋げます</p>
+<p style="text-align:center;margin-top:10px;color:#666;">LINE交換・日程調整まで一貫してサポート</p>
 </div>
 
-<div class="card">
-<h3>② メッセージ内容</h3>
-<p>1通目でマッチするかどうかが決まる</p>
-</div>
-
-<div class="card">
-<h3>③ デートまで導線設計</h3>
-<p>LINE交換・日程調整まで繋げる</p>
-</div>
-
-</div>
-
-<p style="text-align:center;margin-top:30px;font-weight:bold;">
-マッチだけで終わらせず、出会いまで繋げます
-</p>
-
-<p style="text-align:center;margin-top:10px;color:#666;">
-LINE交換・日程調整まで一貫してサポート
-</p>
-
-</div>
-
-<!-- 料金 -->
 <div class="section">
 <h2>料金体系</h2>
-
-<p style="text-align:center;font-weight:bold;color:#ff7a00;">
-完全成果報酬型なのでリスクゼロで始められます
-</p>
+<p style="text-align:center;font-weight:bold;color:#ff7a00;">完全成果報酬型なのでリスクゼロで始められます</p>
 
 <div class="grid grid-4">
-
-<div class="card">
-<h3>初期費用</h3>
-<p>0円</p>
+<div class="card"><h3>初期費用</h3><p>0円</p></div>
+<div class="card" style="border:2px solid #ff7a00;"><h3>マッチ</h3><p>税込み330円 / 件</p></div>
+<div class="card"><h3>LINE交換</h3><p>税込み660円 / 件</p></div>
+<div class="card"><h3>日程調整</h3><p>税込み660円 / 件</p></div>
 </div>
 
-<div class="card" style="border:2px solid #ff7a00;">
-<h3>マッチ</h3>
-<p>税込み330円 / 件</p>
+<p style="text-align:center;margin-top:20px;color:#666;">※マッチングアプリの有料会員への課金が別途必要です</p>
+<p style="text-align:center;margin-top:20px;font-weight:bold;">マッチ後のLINE交換・日程調整までサポートします</p>
 </div>
 
-<div class="card">
-<h3>LINE交換</h3>
-<p>税込み660円 / 件</p>
-</div>
-
-<div class="card">
-<h3>日程調整</h3>
-<p>税込み660円 / 件</p>
-</div>
-
-</div>
-
-<p style="text-align:center;margin-top:20px;color:#666;">
-※マッチングアプリの有料会員への課金が別途必要です
-</p>
-
-<p style="text-align:center;margin-top:20px;font-weight:bold;">
-マッチ後のLINE交換・日程調整までサポートします
-</p>
-</div>
-
-<!-- CTA -->
 <div class="cta">
 <h2>まずは無料で相談</h2>
 <a href="#" class="btn">LINEで無料相談する</a>
+</div>
+
+<div class="footer">
+<a href="tokusho.html">特定商取引法に基づく表記</a> |
+<a href="privacy.html">プライバシーポリシー</a>
 </div>
 
 </body>
