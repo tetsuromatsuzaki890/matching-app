@@ -64,6 +64,30 @@ font-size: 30px;
 margin-bottom: 70px;
 }
 
+/* アプリ */
+.app-list {
+display:flex;
+flex-wrap:wrap;
+justify-content:center;
+gap:15px;
+}
+
+.app {
+background:#fff;
+padding:12px 20px;
+border-radius:30px;
+box-shadow:0 5px 15px rgba(0,0,0,0.05);
+display:flex;
+align-items:center;
+justify-content:center;
+}
+
+/* ←これ追加 */
+.app img {
+height:28px;
+object-fit:contain;
+}
+
 /* グリッド */
 .grid {
 display: grid;
@@ -125,7 +149,7 @@ font-size:12px;
 color:#666;
 }
 
-/* スマホ最適化 */
+/* スマホ */
 @media (max-width:768px){
 
 .hero {
@@ -156,7 +180,6 @@ grid-template-columns: 1fr;
 padding: 14px 28px;
 font-size: 14px;
 }
-
 }
 </style>
 </head>
@@ -177,13 +200,13 @@ font-size: 14px;
 <div style="padding:60px 20px;background:#f7f9fc;">
 <h2 style="text-align:center;margin-bottom:30px;">対応マッチングアプリ</h2>
 
-<div style="display:flex;flex-wrap:wrap;justify-content:center;gap:15px;">
+<div class="app-list">
 
-<div style="background:#fff;padding:12px 20px;border-radius:30px;box-shadow:0 5px 15px rgba(0,0,0,0.05);">東カレデート</div>
-<div style="background:#fff;padding:12px 20px;border-radius:30px;box-shadow:0 5px 15px rgba(0,0,0,0.05);">Tapple</div>
-<div style="background:#fff;padding:12px 20px;border-radius:30px;box-shadow:0 5px 15px rgba(0,0,0,0.05);">Pairs</div>
-<div style="background:#fff;padding:12px 20px;border-radius:30px;box-shadow:0 5px 15px rgba(0,0,0,0.05);">with</div>
-<div style="background:#fff;padding:12px 20px;border-radius:30px;box-shadow:0 5px 15px rgba(0,0,0,0.05);">Omiai</div>
+<div class="app"><img src="とうかれ.webp"></div>
+<div class="app"><img src="うぃず.webp"></div>
+<div class="app"><img src="おみあい.webp"></div>
+<div class="app"><img src="たっぷる.webp"></div>
+<div class="app"><img src="ぺあーず.webp"></div>
 
 </div>
 
@@ -191,6 +214,8 @@ font-size: 14px;
 ※東カレデートでの実績多数
 </p>
 </div>
+
+<!-- 以下そのまま（変更なし） -->
 
 <!-- 悩み -->
 <div class="section">
@@ -213,6 +238,7 @@ font-size: 14px;
 <img src="ここに実績画像URL">
 
 <a href="#" class="btn">今すぐ無料で相談する</a>
+
 </div>
 
 <!-- サービス -->
@@ -289,6 +315,7 @@ LINE交換・日程調整まで一貫してサポート
 <p style="text-align:center;margin-top:20px;color:#666;">
 ※マッチングアプリの有料会員への課金が別途必要です
 </p>
+
 </div>
 
 <!-- CTA -->
