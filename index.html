@@ -64,18 +64,20 @@ font-size: 30px;
 margin-bottom: 70px;
 }
 
-/* ===== アプリ（100点版） ===== */
+/* ===== アプリ（完全中央・100点版） ===== */
 .app-list {
 display:grid;
 grid-template-columns: repeat(3,1fr);
 gap:20px;
-max-width:600px;
-margin:30px auto 0;
+max-width:540px;
+margin:40px auto 0;
+justify-items:center;
 }
 
 .app {
+width:120px;
+height:90px;
 background:#fff;
-padding:26px;
 border-radius:18px;
 box-shadow:0 10px 30px rgba(0,0,0,0.08);
 display:flex;
@@ -182,7 +184,7 @@ grid-template-columns: 1fr;
 grid-template-columns: 1fr;
 }
 
-/* アプリスマホ */
+/* アプリ */
 .app-list {
 grid-template-columns: repeat(2,1fr);
 }
@@ -212,26 +214,21 @@ font-size: 14px;
 <h2 style="text-align:center;margin-bottom:30px;">対応マッチングアプリ</h2>
 
 <div class="app-list">
-
 <div class="app"><img src="とうかれ.webp"></div>
 <div class="app"><img src="たっぷる.webp"></div>
 <div class="app"><img src="ぺあーず.webp"></div>
 <div class="app"><img src="うぃず.webp"></div>
 <div class="app"><img src="おみあい.webp"></div>
-
 </div>
 
 <p style="text-align:center;margin-top:20px;font-weight:bold;">
 主要マッチングアプリすべて対応
 </p>
 
-<p style="text-align:center;color:#666;">
-あなたに最適なアプリで運用します
-</p>
-
 <p style="text-align:center;margin-top:20px;color:#666;">
 ※東カレデートでの実績多数
 </p>
+
 </div>
 
 <!-- 悩み -->
