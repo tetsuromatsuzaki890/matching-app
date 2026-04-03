@@ -64,35 +64,34 @@ font-size: 30px;
 margin-bottom: 70px;
 }
 
-/* ===== アプリ（100点仕様） ===== */
+/* ===== アプリ（100点版） ===== */
 .app-list {
-display:flex;
-flex-wrap:wrap;
-justify-content:center;
+display:grid;
+grid-template-columns: repeat(3,1fr);
 gap:20px;
-margin-top:30px;
+max-width:600px;
+margin:30px auto 0;
 }
 
 .app {
 background:#fff;
-padding:20px 26px;
-border-radius:20px;
+padding:26px;
+border-radius:18px;
 box-shadow:0 10px 30px rgba(0,0,0,0.08);
 display:flex;
 align-items:center;
 justify-content:center;
 transition:0.3s;
-min-width:120px;
 }
 
 .app img {
-height:42px;
+height:50px;
 object-fit:contain;
 }
 
 .app:hover {
-transform:translateY(-6px);
-box-shadow:0 15px 40px rgba(0,0,0,0.15);
+transform: translateY(-5px);
+box-shadow:0 20px 50px rgba(0,0,0,0.15);
 }
 
 /* グリッド */
@@ -181,6 +180,11 @@ grid-template-columns: 1fr;
 
 .grid-4 {
 grid-template-columns: 1fr;
+}
+
+/* アプリスマホ */
+.app-list {
+grid-template-columns: repeat(2,1fr);
 }
 
 .btn {
