@@ -1,343 +1,887 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="ja" data-theme="dark">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>マッチングアプリ運用代行</title>
-
+<title>マッチングアプリ運用代行｜完全成果報酬</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300&family=Shippori+Mincho:wght@400;500;700&family=Cinzel:wght@400;600&display=swap" rel="stylesheet">
 <style>
+
+/* =============================================
+   CSS VARIABLES
+============================================= */
+:root {
+  --gold:        #C8A84B;
+  --gold-light:  #E5C76B;
+  --gold-dim:    rgba(200,168,75,0.18);
+  --gold-border: rgba(200,168,75,0.28);
+  --bg:          #080807;
+  --bg-card:     #111009;
+  --bg-alt:      #0D0C0A;
+  --text:        #EDE8DC;
+  --text-mid:    #A09070;
+  --text-dim:    #5A5040;
+  --line:        rgba(200,168,75,0.2);
+  --radius:      16px;
+  --shadow:      0 24px 64px rgba(0,0,0,0.7);
+}
+[data-theme="light"] {
+  --bg:          #F8F5EE;
+  --bg-card:     #F0EBDE;
+  --bg-alt:      #F2EDE3;
+  --text:        #18160F;
+  --text-mid:    #6B5E3A;
+  --text-dim:    #B0A080;
+  --line:        rgba(160,120,40,0.25);
+  --gold-dim:    rgba(200,168,75,0.1);
+  --gold-border: rgba(160,120,40,0.3);
+  --shadow:      0 16px 48px rgba(0,0,0,0.12);
+}
+
+/* =============================================
+   RESET & BASE
+============================================= */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
 body {
-margin: 0;
-font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-background: #fff;
-color: #333;
-line-height: 1.7;
+  font-family: 'Shippori Mincho', serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.85;
+  overflow-x: hidden;
+  transition: background 0.45s ease, color 0.45s ease;
+}
+img { display: block; max-width: 100%; }
+a { color: inherit; text-decoration: none; }
+
+/* =============================================
+   THEME TOGGLE
+============================================= */
+.toggle {
+  position: fixed;
+  top: 20px; right: 20px;
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--bg-card);
+  border: 1px solid var(--gold-border);
+  padding: 7px 14px 7px 10px;
+  border-radius: 99px;
+  cursor: pointer;
+  transition: border-color 0.3s;
+  user-select: none;
+}
+.toggle:hover { border-color: var(--gold); }
+.toggle__track {
+  width: 32px; height: 18px;
+  background: var(--bg-alt);
+  border: 1px solid var(--gold-border);
+  border-radius: 99px;
+  position: relative;
+}
+.toggle__track::after {
+  content: '';
+  position: absolute;
+  width: 12px; height: 12px;
+  background: var(--gold);
+  border-radius: 50%;
+  top: 2px; left: 2px;
+  transition: transform 0.3s cubic-bezier(.4,0,.2,1);
+}
+[data-theme="light"] .toggle__track::after { transform: translateX(14px); }
+.toggle__label {
+  font-family: 'Cinzel', serif;
+  font-size: 9px;
+  letter-spacing: 0.18em;
+  color: var(--gold);
 }
 
-/* HERO */
+/* =============================================
+   NAV
+============================================= */
+.nav {
+  position: fixed;
+  inset: 0 0 auto 0;
+  z-index: 900;
+  padding: 18px 48px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: linear-gradient(to bottom, var(--bg) 50%, transparent);
+  pointer-events: none;
+}
+.nav__logo {
+  font-family: 'Cinzel', serif;
+  font-size: 12px;
+  letter-spacing: 0.28em;
+  color: var(--gold);
+  pointer-events: auto;
+}
+.nav__links {
+  display: flex; gap: 32px; list-style: none;
+  pointer-events: auto;
+}
+.nav__links a {
+  font-family: 'Cinzel', serif;
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  color: var(--text-dim);
+  transition: color 0.3s;
+}
+.nav__links a:hover { color: var(--gold); }
+
+/* =============================================
+   HERO
+============================================= */
 .hero {
-background: linear-gradient(135deg, #5ec6f0, #3aa4e6);
-color: white;
-text-align: center;
-padding: 140px 20px;
+  min-height: 100svh;
+  display: grid;
+  place-items: center;
+  position: relative;
+  overflow: hidden;
+  padding: 120px 24px 80px;
 }
-
-.hero h1 {
-font-size: 38px;
-line-height: 1.4;
+.hero__glow {
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 55% 55% at 75% 35%, rgba(200,168,75,0.09) 0%, transparent 65%),
+    radial-gradient(ellipse 35% 35% at 20% 75%, rgba(200,168,75,0.05) 0%, transparent 65%);
+  pointer-events: none;
 }
-
-.hero p {
-font-size: 18px;
-margin-top: 15px;
-opacity: 0.9;
+.hero__vline {
+  position: absolute;
+  top: 0; left: 50%;
+  width: 1px; height: 100%;
+  background: linear-gradient(to bottom, transparent 0%, var(--line) 40%, transparent 100%);
+  transform: translateX(-50%);
+  opacity: 0.6;
 }
-
-/* ボタン */
+.hero__inner {
+  position: relative;
+  text-align: center;
+  max-width: 860px;
+  width: 100%;
+}
+.hero__eyebrow {
+  font-family: 'Cinzel', serif;
+  font-size: 10px;
+  letter-spacing: 0.36em;
+  color: var(--gold);
+  margin-bottom: 28px;
+  opacity: 0;
+  animation: fadeUp 0.9s 0.1s ease forwards;
+}
+.hero__h1 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(40px, 8.5vw, 96px);
+  font-weight: 300;
+  line-height: 1.12;
+  letter-spacing: 0.01em;
+  margin-bottom: 28px;
+  opacity: 0;
+  animation: fadeUp 0.9s 0.22s ease forwards;
+}
+.hero__sub {
+  font-size: clamp(13px, 1.8vw, 15px);
+  color: var(--text-mid);
+  letter-spacing: 0.06em;
+  line-height: 2;
+  margin-bottom: 52px;
+  opacity: 0;
+  animation: fadeUp 0.9s 0.34s ease forwards;
+}
+.hero__stats {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 52px;
+  opacity: 0;
+  animation: fadeUp 0.9s 0.46s ease forwards;
+}
+.hero__stat {
+  flex: 1; max-width: 180px; text-align: center;
+}
+.hero__stat-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(34px, 5vw, 52px);
+  font-weight: 300;
+  color: var(--gold);
+  line-height: 1;
+}
+.hero__stat-num sup { font-size: 0.45em; vertical-align: super; }
+.hero__stat-label {
+  font-size: 10px;
+  color: var(--text-dim);
+  letter-spacing: 0.1em;
+  margin-top: 7px;
+  line-height: 1.6;
+}
+.hero__divider {
+  width: 1px; height: 52px;
+  background: var(--line);
+  flex-shrink: 0; margin: 0 8px;
+}
 .btn {
-background: linear-gradient(135deg, #ff7a00, #ff9a3c);
-color: white;
-padding: 18px 44px;
-border-radius: 40px;
-text-decoration: none;
-display: inline-block;
-margin-top: 30px;
-font-weight: bold;
-box-shadow: 0 10px 25px rgba(255,122,0,0.4);
-transition: 0.3s;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 100%);
+  color: #0A0800;
+  font-family: 'Shippori Mincho', serif;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  padding: 17px 44px;
+  border-radius: 99px;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 6px 36px rgba(200,168,75,0.38);
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+  opacity: 0;
+  animation: fadeUp 0.9s 0.58s ease forwards;
+}
+.btn:hover { transform: translateY(-3px); box-shadow: 0 14px 52px rgba(200,168,75,0.52); }
+.btn__arrow {
+  width: 22px; height: 22px;
+  border: 1.5px solid rgba(0,0,0,0.35);
+  border-radius: 50%;
+  display: grid; place-items: center;
+  font-size: 14px; line-height: 1;
+  transition: transform 0.3s;
+}
+.btn:hover .btn__arrow { transform: translateX(4px); }
+.hero__scroll {
+  position: absolute;
+  bottom: 32px; left: 50%;
+  transform: translateX(-50%);
+  display: flex; flex-direction: column;
+  align-items: center; gap: 6px;
+  opacity: 0;
+  animation: fadeUp 1s 1.1s ease forwards;
+}
+.hero__scroll span {
+  font-family: 'Cinzel', serif;
+  font-size: 8px; letter-spacing: 0.32em; color: var(--text-dim);
+}
+.hero__scroll-line {
+  width: 1px; height: 44px;
+  background: linear-gradient(to bottom, var(--gold), transparent);
+  animation: scrollPulse 2.2s ease infinite;
 }
 
-.btn:hover {
-transform: translateY(-4px);
+/* =============================================
+   APPS BAND
+============================================= */
+.apps {
+  background: var(--bg-alt);
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  padding: 0 48px;
+}
+.apps__inner {
+  max-width: 1120px; margin: 0 auto;
+  padding: 36px 0;
+  display: flex; align-items: flex-start;
+  gap: 48px; flex-wrap: wrap;
+}
+.apps__col-label {
+  font-family: 'Cinzel', serif;
+  font-size: 9px; letter-spacing: 0.28em;
+  color: var(--text-dim); padding-top: 12px; white-space: nowrap;
+}
+.apps__col { display: flex; flex-direction: column; gap: 18px; flex: 1; min-width: 260px; }
+.apps__chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip {
+  display: flex; align-items: center; gap: 7px;
+  border: 1px solid var(--gold-border); border-radius: 99px;
+  padding: 8px 16px; font-size: 12px; letter-spacing: 0.07em;
+  color: var(--text-mid); background: var(--gold-dim);
+}
+.chip--featured { border-color: var(--gold); color: var(--gold); background: rgba(200,168,75,0.1); }
+.chip__dot { width: 5px; height: 5px; border-radius: 50%; background: currentColor; flex-shrink: 0; }
+.apps__note {
+  font-size: 12px; color: var(--text-mid); letter-spacing: 0.05em; line-height: 2;
+  border-left: 2px solid var(--gold); padding-left: 14px;
+}
+.apps__note strong { color: var(--text); }
+
+/* =============================================
+   SECTION COMMONS
+============================================= */
+.sec { max-width: 1120px; margin: 0 auto; padding: 100px 48px; }
+.sec--alt { background: var(--bg-alt); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.sec--alt .sec__wrap { max-width: 1120px; margin: 0 auto; padding: 100px 48px; }
+.sec__tag {
+  font-family: 'Cinzel', serif; font-size: 9px; letter-spacing: 0.36em;
+  color: var(--gold); display: block; margin-bottom: 18px;
+}
+.sec__title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(28px, 4.5vw, 52px);
+  font-weight: 300; line-height: 1.22;
+  letter-spacing: 0.02em; margin-bottom: 14px;
+}
+.sec__sub {
+  font-size: 13px; color: var(--text-mid);
+  letter-spacing: 0.06em; margin-bottom: 56px; line-height: 1.9;
+}
+.reveal {
+  opacity: 0; transform: translateY(28px);
+  transition: opacity 0.75s ease, transform 0.75s ease;
+}
+.reveal.in { opacity: 1; transform: none; }
+.d1 { transition-delay: 0.1s; }
+.d2 { transition-delay: 0.2s; }
+.d3 { transition-delay: 0.3s; }
+
+/* =============================================
+   PAIN
+============================================= */
+.pain__grid {
+  display: grid; grid-template-columns: repeat(3,1fr);
+  gap: 2px; background: var(--line);
+  border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden;
+}
+.pain__card { background: var(--bg-card); padding: 44px 32px; transition: background 0.3s; }
+.pain__card:hover { background: var(--bg-alt); }
+.pain__num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 64px; font-weight: 300; color: var(--line); line-height: 1; margin-bottom: 18px;
+  transition: color 0.3s;
+}
+.pain__card:hover .pain__num { color: var(--gold-dim); }
+.pain__title { font-size: 16px; font-weight: 700; letter-spacing: 0.06em; margin-bottom: 12px; }
+.pain__desc { font-size: 13px; color: var(--text-mid); line-height: 1.95; }
+
+/* =============================================
+   RESULTS
+============================================= */
+.results__layout { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+.results__num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(72px, 11vw, 128px);
+  font-weight: 300; color: var(--gold); line-height: 1; letter-spacing: -0.02em;
+}
+.results__num sup { font-size: 0.38em; vertical-align: super; }
+.results__label { font-size: 13px; color: var(--text-mid); letter-spacing: 0.1em; margin-top: 14px; margin-bottom: 36px; }
+.results__note {
+  font-size: 12px; color: var(--text-mid); line-height: 2.1;
+  border-left: 2px solid var(--gold); padding-left: 16px; letter-spacing: 0.06em;
+}
+.results__frame {
+  border: 1px solid var(--gold-border); border-radius: var(--radius);
+  background: var(--bg-card); overflow: hidden;
+  aspect-ratio: 4/3; display: grid; place-items: center;
+}
+.results__ph { text-align: center; padding: 32px; }
+.results__ph-grid {
+  display: grid; grid-template-columns: repeat(3,1fr); gap: 6px; margin-bottom: 16px; opacity: 0.12;
+}
+.results__ph-grid div { background: var(--gold); border-radius: 4px; aspect-ratio: 9/16; }
+.results__ph-text {
+  font-family: 'Cinzel', serif; font-size: 10px;
+  letter-spacing: 0.22em; color: var(--text-dim); line-height: 2;
 }
 
-/* セクション */
-.section {
-padding: 120px 20px;
-max-width: 1000px;
-margin: auto;
+/* =============================================
+   GALLERY
+============================================= */
+.gallery { background: var(--bg-alt); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.gallery__wrap { max-width: 1120px; margin: 0 auto; padding: 80px 48px; }
+.gallery__grid {
+  display: grid; grid-template-columns: repeat(5,1fr); gap: 10px;
 }
-
-h2 {
-text-align: center;
-font-size: 30px;
-margin-bottom: 70px;
+.gallery__grid img {
+  width: 100%; aspect-ratio: 9/16; object-fit: cover;
+  border-radius: 10px; border: 1px solid var(--gold-border);
+  transition: transform 0.35s ease, box-shadow 0.35s ease; cursor: zoom-in;
 }
-
-/* ===== アプリ（完全中央・100点版） ===== */
-.app-list {
-display:grid;
-grid-template-columns: repeat(3,1fr);
-gap:20px;
-max-width:540px;
-margin:40px auto 0;
-justify-items:center;
+.gallery__grid img:hover { transform: scale(1.04) translateY(-4px); box-shadow: var(--shadow); position: relative; z-index: 2; }
+.gallery__tile {
+  aspect-ratio: 9/16; border: 1px dashed var(--gold-border); border-radius: 10px;
+  display: grid; place-items: center;
+  font-family: 'Cinzel', serif; font-size: 10px; letter-spacing: 0.2em; color: var(--text-dim); opacity: 0.35;
 }
+.gallery__cap { text-align: center; margin-top: 24px; font-size: 11px; color: var(--text-dim); letter-spacing: 0.16em; }
 
-.app {
-width:120px;
-height:90px;
-background:#fff;
-border-radius:18px;
-box-shadow:0 10px 30px rgba(0,0,0,0.08);
-display:flex;
-align-items:center;
-justify-content:center;
-transition:0.3s;
+/* =============================================
+   SERVICE
+============================================= */
+.service__grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; }
+.service__card {
+  border: 1px solid var(--gold-border); border-radius: var(--radius);
+  padding: 44px 32px; background: var(--gold-dim);
+  position: relative; overflow: hidden;
+  transition: transform 0.38s ease, box-shadow 0.38s ease, border-color 0.38s ease;
 }
-
-.app img {
-height:50px;
-object-fit:contain;
+.service__card::after {
+  content: ''; position: absolute; inset: 0 0 auto 0; height: 2px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  transform: scaleX(0); transition: transform 0.45s ease;
 }
+.service__card:hover::after { transform: scaleX(1); }
+.service__card:hover { transform: translateY(-6px); box-shadow: var(--shadow); border-color: rgba(200,168,75,0.45); }
+.service__num { font-family: 'Cinzel', serif; font-size: 9px; letter-spacing: 0.22em; color: var(--gold); margin-bottom: 18px; }
+.service__icon { font-size: 20px; margin-bottom: 16px; opacity: 0.65; }
+.service__title { font-size: 17px; font-weight: 700; letter-spacing: 0.06em; margin-bottom: 14px; }
+.service__desc { font-size: 13px; color: var(--text-mid); line-height: 2; }
 
-.app:hover {
-transform: translateY(-5px);
-box-shadow:0 20px 50px rgba(0,0,0,0.15);
+/* =============================================
+   FLOW
+============================================= */
+.flow__steps { display: flex; align-items: flex-start; }
+.flow__step { flex: 1; text-align: center; padding: 0 16px; position: relative; display: block; border-bottom: none; }
+.flow__step::after {
+  content: '›'; position: absolute; right: -10px; top: 26px;
+  color: var(--gold); font-size: 28px; font-family: 'Cormorant Garamond', serif;
+  font-weight: 300; line-height: 1; opacity: 0.6;
 }
-
-/* グリッド */
-.grid {
-display: grid;
-gap: 28px;
+.flow__step:last-child::after { display: none; }
+.flow__circle {
+  width: 60px; height: 60px; border: 1px solid var(--gold); border-radius: 50%;
+  display: grid; place-items: center; margin: 0 auto 20px;
+  font-family: 'Cormorant Garamond', serif; font-size: 26px; font-weight: 300; color: var(--gold);
+  transition: background 0.3s;
 }
+.flow__step:hover .flow__circle { background: var(--gold-dim); }
+.flow__title { font-size: 14px; font-weight: 700; letter-spacing: 0.07em; margin-bottom: 10px; }
+.flow__desc { font-size: 12px; color: var(--text-mid); line-height: 1.95; }
 
-@media(min-width:768px){
-.grid-3 {grid-template-columns: repeat(3,1fr);}
-.grid-4 {grid-template-columns: repeat(4,1fr);}
+/* =============================================
+   PRICING
+============================================= */
+.pricing__grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 16px; }
+.pricing__card {
+  border: 1px solid var(--gold-border); border-radius: var(--radius);
+  padding: 36px 22px; text-align: center; background: var(--gold-dim);
+  transition: transform 0.3s, box-shadow 0.3s; position: relative; overflow: hidden;
 }
-
-/* カード */
-.card {
-background: #f7f9fc;
-padding: 35px;
-border-radius: 18px;
-text-align: center;
-box-shadow: 0 15px 40px rgba(0,0,0,0.05);
-display: flex;
-flex-direction: column;
-justify-content: center;
+.pricing__card:hover { transform: translateY(-4px); box-shadow: var(--shadow); }
+.pricing__card--feat { border-color: var(--gold); background: rgba(200,168,75,0.08); }
+.pricing__badge {
+  position: absolute; top: 14px; right: -26px;
+  background: var(--gold); color: #080700;
+  font-family: 'Cinzel', serif; font-size: 7px; font-weight: 700; letter-spacing: 0.14em;
+  padding: 3px 32px; transform: rotate(45deg);
 }
+.pricing__lbl { font-family: 'Cinzel', serif; font-size: 9px; letter-spacing: 0.22em; color: var(--text-dim); margin-bottom: 18px; }
+.pricing__price { font-family: 'Cormorant Garamond', serif; font-size: clamp(40px,4vw,54px); font-weight: 300; color: var(--gold); line-height: 1; }
+.pricing__price--zero { font-size: clamp(52px,5vw,68px); color: var(--text-dim); }
+.pricing__unit { font-size: 11px; color: var(--text-dim); letter-spacing: 0.08em; margin-top: 6px; }
+.pricing__note { font-size: 11px; color: var(--text-mid); line-height: 1.85; margin-top: 18px; padding-top: 16px; border-top: 1px solid var(--line); }
+.pricing__fn { text-align: center; margin-top: 36px; font-size: 11px; color: var(--text-dim); letter-spacing: 0.1em; line-height: 2.3; }
 
-/* 実績 */
-.result {
-text-align: center;
-}
-
-.result-main {
-font-size: 64px;
-color: #ff7a00;
-font-weight: bold;
-}
-
-.result-sub {
-margin-top: 10px;
-color: #666;
-}
-
-.result img {
-width: 100%;
-max-width: 600px;
-margin-top: 50px;
-border-radius: 20px;
-box-shadow: 0 20px 50px rgba(0,0,0,0.15);
-}
-
-/* CTA */
+/* =============================================
+   CTA
+============================================= */
 .cta {
-background: #f0f4f8;
-text-align: center;
-padding: 140px 20px;
+  min-height: 56vh; display: grid; place-items: center;
+  position: relative; overflow: hidden; padding: 80px 24px;
 }
+.cta__glow {
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse 70% 70% at 50% 50%, rgba(200,168,75,0.07) 0%, transparent 68%);
+  pointer-events: none;
+}
+.cta__inner { position: relative; text-align: center; max-width: 680px; }
+.cta__tag { font-family: 'Cinzel', serif; font-size: 9px; letter-spacing: 0.38em; color: var(--gold); display: block; margin-bottom: 28px; }
+.cta__title { font-family: 'Cormorant Garamond', serif; font-size: clamp(32px,5.5vw,62px); font-weight: 300; line-height: 1.28; margin-bottom: 22px; letter-spacing: 0.02em; }
+.cta__sub { font-size: 13px; color: var(--text-mid); letter-spacing: 0.07em; line-height: 2.1; margin-bottom: 44px; }
+.cta .btn { animation: none; opacity: 1; }
 
+/* =============================================
+   FOOTER
+============================================= */
 .footer {
-text-align:center;
-padding:40px 0;
-font-size:12px;
-color:#666;
+  background: var(--bg-alt); border-top: 1px solid var(--line);
+  padding: 40px 48px;
+  display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 20px;
+}
+.footer__logo { font-family: 'Cinzel', serif; font-size: 11px; letter-spacing: 0.26em; color: var(--gold); }
+.footer__links { display: flex; gap: 28px; list-style: none; flex-wrap: wrap; }
+.footer__links a { font-size: 11px; color: var(--text-dim); letter-spacing: 0.1em; transition: color 0.3s; }
+.footer__links a:hover { color: var(--gold); }
+.footer__copy { font-size: 10px; color: var(--text-dim); letter-spacing: 0.1em; }
+
+/* =============================================
+   KEYFRAMES
+============================================= */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(22px); }
+  to   { opacity: 1; transform: none; }
+}
+@keyframes scrollPulse {
+  0%   { transform: scaleY(0); transform-origin: top; }
+  45%  { transform: scaleY(1); transform-origin: top; }
+  46%  { transform: scaleY(1); transform-origin: bottom; }
+  100% { transform: scaleY(0); transform-origin: bottom; }
 }
 
-/* スマホ */
-@media (max-width:768px){
-
-.hero {
-padding: 80px 20px;
+/* =============================================
+   RESPONSIVE ≤680px（スマホのみ）
+============================================= */
+@media (max-width: 680px) {
+  .nav { padding: 16px 20px; }
+  .nav__links { display: none; }
+  .hero { padding: 100px 20px 76px; }
+  .hero__eyebrow { font-size: 9px; letter-spacing: 0.2em; }
+  .hero__stats { gap: 0; }
+  .hero__stat { max-width: 120px; }
+  .hero__divider { margin: 0 4px; }
+  .apps { padding: 0 20px; }
+  .apps__inner { gap: 20px; padding: 28px 0; flex-direction: column; }
+  .apps__col-label { padding-top: 0; }
+  .sec { padding: 64px 20px; }
+  .sec--alt .sec__wrap { padding: 64px 20px; }
+  .pain__grid { grid-template-columns: 1fr; }
+  .pain__card { padding: 32px 20px; }
+  .results__layout { grid-template-columns: 1fr; gap: 48px; }
+  .gallery__wrap { padding: 56px 20px; }
+  .gallery__grid { grid-template-columns: repeat(3,1fr); gap: 8px; }
+  .service__grid { grid-template-columns: 1fr; gap: 14px; }
+  .service__card { padding: 32px 24px; }
+  .flow__steps { flex-direction: column; gap: 0; }
+  .flow__step { padding: 24px 16px; border-bottom: 1px solid var(--line); text-align: left; display: flex; align-items: center; gap: 20px; }
+  .flow__step:last-child { border-bottom: none; }
+  .flow__step::after { display: none; }
+  .flow__circle { margin: 0; flex-shrink: 0; width: 48px; height: 48px; font-size: 22px; }
+  .flow__title { margin-bottom: 4px; }
+  .pricing__grid { grid-template-columns: 1fr 1fr; gap: 12px; }
+  .pricing__card { padding: 28px 16px; }
+  .footer { padding: 32px 20px; flex-direction: column; align-items: flex-start; }
+  .toggle { top: 14px; right: 14px; padding: 6px 12px 6px 8px; }
 }
 
-.hero h1 {
-font-size: 26px;
-}
-
-.section {
-padding: 60px 20px;
-}
-
-.result-main {
-font-size: 42px;
-}
-
-.grid-3 {
-grid-template-columns: 1fr;
-}
-
-.grid-4 {
-grid-template-columns: 1fr;
-}
-
-/* アプリ */
-.app-list {
-grid-template-columns: repeat(2,1fr);
-}
-
-.btn {
-padding: 14px 28px;
-font-size: 14px;
-}
+/* =============================================
+   RESPONSIVE ≤420px（小さめスマホ）
+============================================= */
+@media (max-width: 420px) {
+  .hero__stats { flex-direction: column; align-items: center; gap: 16px; }
+  .hero__divider { width: 48px; height: 1px; }
+  .hero__stat { max-width: 100%; }
+  .pricing__grid { grid-template-columns: 1fr; }
+  .gallery__grid { grid-template-columns: repeat(2,1fr); }
+  .btn { padding: 15px 30px; font-size: 13px; }
 }
 </style>
 </head>
-
 <body>
 
+<!-- TOGGLE -->
+<div class="toggle" onclick="toggleTheme()" role="button" aria-label="テーマ切替">
+  <div class="toggle__track"></div>
+  <span class="toggle__label" id="themeLabel">DARK</span>
+</div>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav__logo">MATCHING CONCIERGE</div>
+  <ul class="nav__links">
+    <li><a href="#service">SERVICE</a></li>
+    <li><a href="#results">RESULTS</a></li>
+    <li><a href="#pricing">PRICING</a></li>
+    <li><a href="#contact">CONTACT</a></li>
+  </ul>
+</nav>
+
 <!-- HERO -->
-<div class="hero">
-<h1>
-マッチ数が増えない人へ<br>
-出会いまで繋げるマッチングアプリ運用代行
-</h1>
-<p>完全成果報酬｜1マッチ330円</p>
-<a href="#" class="btn">無料でマッチ率を診断する（30秒）</a>
+<section class="hero">
+  <div class="hero__glow"></div>
+  <div class="hero__vline"></div>
+  <div class="hero__inner">
+    <p class="hero__eyebrow">MATCHING APP MANAGEMENT FOR HIGH-CLASS</p>
+    <h1 class="hero__h1">出会えないのは、<br>戦略の問題だ。</h1>
+    <p class="hero__sub">
+      マッチングアプリの運用を、専任担当者が丸ごとサポート。<br>
+      メッセージからデートの約束まで、出会いの全プロセスを徹底サポートします。
+    </p>
+    <div class="hero__stats">
+      <div class="hero__stat">
+        <div class="hero__stat-num">1,600<sup>+</sup></div>
+        <div class="hero__stat-label">累計マッチ数<br>（東カレデートのみ）</div>
+      </div>
+      <div class="hero__divider"></div>
+      <div class="hero__stat">
+        <div class="hero__stat-num">¥330</div>
+        <div class="hero__stat-label">1マッチあたり<br>（完全成果報酬）</div>
+      </div>
+      <div class="hero__divider"></div>
+      <div class="hero__stat">
+        <div class="hero__stat-num">¥0</div>
+        <div class="hero__stat-label">初期費用<br>固定費なし</div>
+      </div>
+    </div>
+    <a href="#contact" class="btn">
+      LINEで無料相談する
+      <span class="btn__arrow">›</span>
+    </a>
+  </div>
+  <div class="hero__scroll">
+    <span>SCROLL</span>
+    <div class="hero__scroll-line"></div>
+  </div>
+</section>
+
+<!-- APPS -->
+<div class="apps">
+  <div class="apps__inner">
+    <span class="apps__col-label">SUPPORTED APPS</span>
+    <div class="apps__col">
+      <div class="apps__chips">
+        <span class="chip chip--featured"><span class="chip__dot"></span>東カレデート（推奨・実績公開中）</span>
+        <span class="chip"><span class="chip__dot"></span>Pairs</span>
+        <span class="chip"><span class="chip__dot"></span>Tapple</span>
+        <span class="chip"><span class="chip__dot"></span>with</span>
+        <span class="chip"><span class="chip__dot"></span>Omiai</span>
+      </div>
+      <p class="apps__note">
+        東カレデートをとくにお勧めする理由 ——<br>
+        <strong>プレミアム会員ならDMが送り放題。</strong>他アプリと比べてコストパフォーマンスが高く、ハイクラス層が集中しているため成果に繋がりやすい。実績トークも公開中。
+      </p>
+    </div>
+  </div>
 </div>
 
-<!-- 対応アプリ -->
-<div style="padding:60px 20px;background:#f7f9fc;">
-<h2 style="text-align:center;margin-bottom:30px;">対応マッチングアプリ</h2>
+<!-- PAIN -->
+<section class="sec" id="pain">
+  <div class="reveal">
+    <span class="sec__tag">PROBLEM</span>
+    <h2 class="sec__title">その悩み、<br>戦略で解決できる。</h2>
+    <p class="sec__sub">スペックがあっても、見せ方と戦略がなければ埋もれる。</p>
+  </div>
+  <div class="pain__grid reveal d1">
+    <div class="pain__card">
+      <div class="pain__num">01</div>
+      <div class="pain__title">マッチしない</div>
+      <div class="pain__desc">写真・文章・設定が最適化されていない。どれほどスペックが高くても、見せ方が悪ければ埋もれる。</div>
+    </div>
+    <div class="pain__card">
+      <div class="pain__num">02</div>
+      <div class="pain__title">返信が続かない</div>
+      <div class="pain__desc">初メッセージの質と会話の温度感が鍵。何を送るかより「どう送るか」で返信率は大きく変わる。</div>
+    </div>
+    <div class="pain__card">
+      <div class="pain__num">03</div>
+      <div class="pain__title">会えない</div>
+      <div class="pain__desc">LINE交換〜日程調整の導線設計が不完全。この段階での離脱が最も多い。ここまで一貫してサポートする。</div>
+    </div>
+  </div>
+</section>
 
-<div class="app-list">
-<div class="app"><img src="とうかれ.webp"></div>
-<div class="app"><img src="たっぷる.webp"></div>
-<div class="app"><img src="おみあい.webp"></div>
+<!-- RESULTS -->
+<div class="sec--alt" id="results">
+  <div class="sec__wrap">
+    <div class="results__layout">
+      <div class="reveal">
+        <span class="sec__tag">RESULTS</span>
+        <div class="results__num">1,600<sup>+</sup></div>
+        <div class="results__label">東カレデート 累計マッチ数</div>
+        <div class="results__note">
+          実績トークのスクリーンショットを公開中<br>
+          （東カレデートのみ開示可能）<br>
+          完全成果報酬でリスクゼロ
+        </div>
+      </div>
+      <div class="results__frame reveal d1">
+        <!--
+          実績画像を入れる場合:
+          <img src="your-screenshot.jpg" style="width:100%;height:100%;object-fit:cover;">
+          に差し替えてください
+        -->
+        <div class="results__ph">
+          <div class="results__ph-grid">
+            <div></div><div></div><div></div>
+            <div></div><div></div><div></div>
+          </div>
+          <div class="results__ph-text">RESULTS IMAGE<br>実績画像を挿入</div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
-<p style="text-align:center;margin-top:20px;color:#666;">
-※東カレデートでの実績多数
-</p>
-
+<!-- GALLERY -->
+<div class="gallery">
+  <div class="gallery__wrap">
+    <div class="reveal" style="margin-bottom:40px;">
+      <span class="sec__tag">PROOF</span>
+      <h2 class="sec__title">実績トーク、全て本物です。</h2>
+    </div>
+    <!--
+      画像の追加方法:
+      .gallery__tile を <img src="shot-XX.jpg"> に差し替えてください（最大20枚）
+    -->
+    <div class="gallery__grid reveal d1">
+      <div class="gallery__tile">01</div>
+      <div class="gallery__tile">02</div>
+      <div class="gallery__tile">03</div>
+      <div class="gallery__tile">04</div>
+      <div class="gallery__tile">05</div>
+      <div class="gallery__tile">06</div>
+      <div class="gallery__tile">07</div>
+      <div class="gallery__tile">08</div>
+      <div class="gallery__tile">09</div>
+      <div class="gallery__tile">10</div>
+      <!-- 11〜20枚目も同様に追加 -->
+    </div>
+    <p class="gallery__cap reveal">※ 個人情報は全てモザイク処理済み</p>
+  </div>
 </div>
 
-<!-- 悩み -->
-<div class="section">
-<h2>こんな悩みありませんか？</h2>
+<!-- SERVICE -->
+<section class="sec" id="service">
+  <div class="reveal">
+    <span class="sec__tag">SERVICE</span>
+    <h2 class="sec__title">マッチから出会いまで、<br>すべてを動かす。</h2>
+    <p class="sec__sub">プロフィール設計からデートの約束まで、一貫してサポートします。</p>
+  </div>
+  <div class="service__grid">
+    <div class="service__card reveal d1">
+      <div class="service__num">SERVICE 01</div>
+      <div class="service__icon">✦</div>
+      <div class="service__title">プロフィール設計</div>
+      <div class="service__desc">写真選定・自己紹介文・各種設定を特化でチューニング。第一印象でマッチ率を最大化します。</div>
+    </div>
+    <div class="service__card reveal d2">
+      <div class="service__num">SERVICE 02</div>
+      <div class="service__icon">✦</div>
+      <div class="service__title">メッセージ・DM運用</div>
+      <div class="service__desc">お客様の同意のもと、専任担当者がアカウント運用を全面サポート。DMの送信から会話のやり取りまで、プロが責任を持って対応します。</div>
+    </div>
+    <div class="service__card reveal d3">
+      <div class="service__num">SERVICE 03</div>
+      <div class="service__icon">✦</div>
+      <div class="service__title">LINE交換〜デート実現</div>
+      <div class="service__desc">自然な流れでLINE交換へ誘導し、日程調整まで一貫してサポート。マッチで終わらせず、実際の出会いへ繋げます。</div>
+    </div>
+  </div>
+</section>
 
-<div class="grid grid-3">
-<div class="card">マッチしない</div>
-<div class="card">何を送ればいいかわからない</div>
-<div class="card">会えない</div>
-</div>
-</div>
-
-<!-- 実績 -->
-<div class="section result">
-<h2>実績</h2>
-
-<div class="result-main">1,600件以上</div>
-<div class="result-sub">累計マッチ数（東カレデートのアプリのみ）</div>
-
-<img src="ここに実績画像URL">
-
-<a href="#" class="btn">今すぐ無料で相談する</a>
-
-</div>
-
-<!-- サービス -->
-<div class="section">
-<h2>サービス内容</h2>
-
-<div class="grid grid-3">
-<div class="card">
-<h3>プロフィール最適化</h3>
-<p>マッチ率を上げる設計</p>
-</div>
-
-<div class="card">
-<h3>メッセージ運用</h3>
-<p>返信率・デート率を改善</p>
-</div>
-
-<div class="card">
-<h3>日程調整</h3>
-<p>デート成立までサポート</p>
-</div>
-</div>
-</div>
-
-<!-- 仕組み -->
-<div class="section">
-<h2>なぜ成果に繋がるのか？</h2>
-
-<div class="grid grid-3">
-<div class="card">
-<h3>① プロフィール設計</h3>
-<p>第1印象でマッチ率が変わる</p>
-</div>
-
-<div class="card">
-<h3>② 初手メッセージ</h3>
-<p>1通目が最重要</p>
-</div>
-
-<div class="card">
-<h3>③ デートまで導線設計</h3>
-<p>LINE交換・日程調整まで繋げる</p>
-</div>
-</div>
-
-<p style="text-align:center;margin-top:30px;font-weight:bold;">
-マッチだけで終わらせず、出会いまで繋げます
-</p>
-
-<p style="text-align:center;margin-top:10px;color:#666;">
-LINE交換・日程調整まで一貫してサポート
-</p>
+<!-- FLOW -->
+<div class="sec--alt">
+  <div class="sec__wrap">
+    <div class="reveal">
+      <span class="sec__tag">HOW IT WORKS</span>
+      <h2 class="sec__title">4ステップで、<br>出会いを実現する。</h2>
+      <p class="sec__sub" style="margin-bottom:52px;">最短1週間でマッチが始まります</p>
+    </div>
+    <div class="flow__steps reveal d1">
+      <div class="flow__step">
+        <div class="flow__circle">1</div>
+        <div>
+          <div class="flow__title">無料相談</div>
+          <div class="flow__desc">現状ヒアリング・<br>アプリ選定のご提案</div>
+        </div>
+      </div>
+      <div class="flow__step">
+        <div class="flow__circle">2</div>
+        <div>
+          <div class="flow__title">プロフィール設計</div>
+          <div class="flow__desc">写真・文章を<br>プロが最適化</div>
+        </div>
+      </div>
+      <div class="flow__step">
+        <div class="flow__circle">3</div>
+        <div>
+          <div class="flow__title">運用開始</div>
+          <div class="flow__desc">DM送信・やり取り・<br>LINE交換をサポート</div>
+        </div>
+      </div>
+      <div class="flow__step">
+        <div class="flow__circle">4</div>
+        <div>
+          <div class="flow__title">出会い実現</div>
+          <div class="flow__desc">日程調整まで<br>一貫してサポート</div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
-<!-- 料金 -->
-<div class="section">
-<h2>料金体系</h2>
-
-<p style="text-align:center;font-weight:bold;color:#ff7a00;">
-完全成果報酬型なのでリスクゼロで始められます
-</p>
-
-<div class="grid grid-4">
-<div class="card"><h3>初期費用</h3><p>0円</p></div>
-<div class="card" style="border:2px solid #ff7a00;"><h3>マッチ</h3><p>税込み330円 / 件</p></div>
-<div class="card"><h3>LINE交換</h3><p>税込み660円 / 件</p></div>
-<div class="card"><h3>日程調整</h3><p>税込み660円 / 件</p></div>
-</div>
-
-<p style="text-align:center;margin-top:20px;">
-週払い（毎週日曜締め・翌月曜請求）
-</p>
-
-<p style="text-align:center;margin-top:20px;color:#666;">
-※マッチングアプリの有料会員への課金が別途必要です
-</p>
-
-</div>
+<!-- PRICING -->
+<section class="sec" id="pricing">
+  <div class="reveal">
+    <span class="sec__tag">PRICING</span>
+    <h2 class="sec__title">完全成果報酬。<br>リスクはゼロ。</h2>
+    <p class="sec__sub">成果が出た分だけお支払いいただく、フェアな料金体系。</p>
+  </div>
+  <div class="pricing__grid reveal d1">
+    <div class="pricing__card">
+      <div class="pricing__lbl">INITIAL FEE</div>
+      <div class="pricing__price pricing__price--zero">¥0</div>
+      <div class="pricing__note">初期費用・固定費<br>完全無料</div>
+    </div>
+    <div class="pricing__card pricing__card--feat">
+      <div class="pricing__badge">POPULAR</div>
+      <div class="pricing__lbl">MATCH</div>
+      <div class="pricing__price">330</div>
+      <div class="pricing__unit">円 / 件（税込）</div>
+      <div class="pricing__note">マッチした分だけ<br>お支払い</div>
+    </div>
+    <div class="pricing__card">
+      <div class="pricing__lbl">LINE EXCHANGE</div>
+      <div class="pricing__price">660</div>
+      <div class="pricing__unit">円 / 件（税込）</div>
+      <div class="pricing__note">LINE交換成立時<br>のみ発生</div>
+    </div>
+    <div class="pricing__card">
+      <div class="pricing__lbl">DATE SCHEDULING</div>
+      <div class="pricing__price">660</div>
+      <div class="pricing__unit">円 / 件（税込）</div>
+      <div class="pricing__note">日程調整完了時<br>のみ発生</div>
+    </div>
+  </div>
+  <div class="pricing__fn reveal">
+    週払い（毎週日曜締め・翌月曜請求）<br>
+    ※マッチングアプリの有料会員への課金が別途必要です
+  </div>
+</section>
 
 <!-- CTA -->
-<div class="cta">
-<h2>まずは無料で相談</h2>
-<a href="#" class="btn">LINEで無料相談する</a>
-</div>
+<section class="cta" id="contact">
+  <div class="cta__glow"></div>
+  <div class="cta__inner reveal">
+    <span class="cta__tag">GET STARTED</span>
+    <h2 class="cta__title">お気軽に<br>お問い合わせください。</h2>
+    <p class="cta__sub">
+      LINEで気軽にご相談ください。<br>
+      現状をヒアリングして、最適なプランをご提案します。
+    </p>
+    <a href="#" class="btn">
+      LINEで無料相談する
+      <span class="btn__arrow">›</span>
+    </a>
+  </div>
+</section>
 
-<!-- フッター -->
-<div class="footer">
-<a href="tokusho.html">特定商取引法に基づく表記</a> |
-<a href="privacy.html">プライバシーポリシー</a> |
-<a href="terms.html">利用規約</a>
-</div>
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer__logo">MATCHING CONCIERGE</div>
+  <ul class="footer__links">
+    <li><a href="tokusho.html">特定商取引法に基づく表記</a></li>
+    <li><a href="privacy.html">プライバシーポリシー</a></li>
+    <li><a href="terms.html">利用規約</a></li>
+  </ul>
+  <div class="footer__copy">© 2025 Matching Concierge. All rights reserved.</div>
+</footer>
 
+<script>
+function toggleTheme() {
+  const html = document.documentElement;
+  const lbl  = document.getElementById('themeLabel');
+  const dark = html.dataset.theme === 'dark';
+  html.dataset.theme = dark ? 'light' : 'dark';
+  lbl.textContent    = dark ? 'LIGHT' : 'DARK';
+}
+
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+  });
+}, { threshold: 0.1 });
+document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+</script>
 </body>
 </html>
