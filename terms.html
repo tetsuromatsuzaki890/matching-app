@@ -1,75 +1,179 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="ja" data-theme="dark">
 <head>
 <meta charset="UTF-8">
-<title>利用規約</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>利用規約｜MATCHING CONCIERGE</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400&family=Shippori+Mincho:wght@400;500;700&family=Cinzel:wght@400;600&display=swap" rel="stylesheet">
 <style>
-body{font-family:-apple-system;padding:40px;line-height:1.8;}
-h1{margin-bottom:30px;}
-h2{margin-top:30px;}
+:root {
+  --gold: #C8A84B;
+  --gold-border: rgba(200,168,75,0.28); --gold-dim: rgba(200,168,75,0.08);
+  --bg: #080807; --bg-card: #111009; --bg-alt: #0D0C0A;
+  --text: #EDE8DC; --text-mid: #A09070; --text-dim: #5A5040;
+  --line: rgba(200,168,75,0.2);
+}
+[data-theme="light"] {
+  --bg: #F8F5EE; --bg-card: #F0EBDE; --bg-alt: #F2EDE3;
+  --text: #18160F; --text-mid: #6B5E3A; --text-dim: #B0A080;
+  --line: rgba(160,120,40,0.25); --gold-dim: rgba(200,168,75,0.1);
+  --gold-border: rgba(160,120,40,0.3);
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Shippori Mincho', serif; background: var(--bg); color: var(--text); line-height: 1.85; transition: background 0.45s, color 0.45s; }
+a { color: var(--gold); text-decoration: none; transition: opacity 0.3s; }
+a:hover { opacity: 0.7; }
+
+.toggle { position: fixed; top: 20px; right: 20px; z-index: 999; display: flex; align-items: center; gap: 10px; background: var(--bg-card); border: 1px solid var(--gold-border); padding: 7px 14px 7px 10px; border-radius: 99px; cursor: pointer; transition: border-color 0.3s; user-select: none; }
+.toggle:hover { border-color: var(--gold); }
+.toggle__track { width: 32px; height: 18px; background: var(--bg-alt); border: 1px solid var(--gold-border); border-radius: 99px; position: relative; }
+.toggle__track::after { content: ''; position: absolute; width: 12px; height: 12px; background: var(--gold); border-radius: 50%; top: 2px; left: 2px; transition: transform 0.3s; }
+[data-theme="light"] .toggle__track::after { transform: translateX(14px); }
+.toggle__label { font-family: 'Cinzel', serif; font-size: 9px; letter-spacing: 0.18em; color: var(--gold); }
+
+nav { position: fixed; inset: 0 0 auto 0; z-index: 900; padding: 18px 48px; display: flex; align-items: center; justify-content: space-between; background: linear-gradient(to bottom, var(--bg) 50%, transparent); }
+.nav__logo { font-family: 'Cinzel', serif; font-size: 12px; letter-spacing: 0.28em; color: var(--gold); }
+.nav__back { font-family: 'Cinzel', serif; font-size: 10px; letter-spacing: 0.15em; color: var(--text-dim); transition: color 0.3s; }
+.nav__back:hover { color: var(--gold); opacity: 1; }
+
+.page-hero { padding: 140px 48px 60px; max-width: 900px; margin: 0 auto; border-bottom: 1px solid var(--line); }
+.page-hero__tag { font-family: 'Cinzel', serif; font-size: 9px; letter-spacing: 0.36em; color: var(--gold); display: block; margin-bottom: 20px; }
+.page-hero__title { font-family: 'Cormorant Garamond', serif; font-size: clamp(32px, 5vw, 56px); font-weight: 300; letter-spacing: 0.02em; line-height: 1.2; }
+
+.content { max-width: 900px; margin: 0 auto; padding: 60px 48px 120px; }
+.content__intro { font-size: 14px; color: var(--text-mid); line-height: 2; margin-bottom: 56px; padding-bottom: 40px; border-bottom: 1px solid var(--line); }
+
+.article { margin-bottom: 48px; }
+.article__num { font-family: 'Cinzel', serif; font-size: 9px; letter-spacing: 0.3em; color: var(--gold); display: block; margin-bottom: 12px; }
+.article__title { font-family: 'Cormorant Garamond', serif; font-size: clamp(20px, 2.5vw, 28px); font-weight: 300; letter-spacing: 0.04em; margin-bottom: 16px; padding-bottom: 12px; border-bottom: 1px solid var(--line); }
+.article__body { font-size: 14px; color: var(--text-mid); line-height: 2.1; }
+.article__list { list-style: none; margin-top: 12px; }
+.article__list li { font-size: 14px; color: var(--text-mid); line-height: 2; padding-left: 16px; position: relative; }
+.article__list li::before { content: '—'; position: absolute; left: 0; color: var(--gold); font-size: 12px; }
+
+.back-link { display: inline-flex; align-items: center; gap: 10px; border: 1px solid var(--gold-border); border-radius: 99px; padding: 12px 28px; font-family: 'Cinzel', serif; font-size: 10px; letter-spacing: 0.18em; color: var(--gold); transition: background 0.3s, border-color 0.3s; margin-top: 16px; }
+.back-link:hover { background: var(--gold-dim); border-color: var(--gold); opacity: 1; }
+
+footer { background: var(--bg-alt); border-top: 1px solid var(--line); padding: 32px 48px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
+.footer__logo { font-family: 'Cinzel', serif; font-size: 11px; letter-spacing: 0.26em; color: var(--gold); }
+.footer__copy { font-size: 10px; color: var(--text-dim); letter-spacing: 0.1em; }
+
+@media (max-width: 680px) {
+  nav { padding: 16px 20px; }
+  .page-hero { padding: 120px 20px 48px; }
+  .content { padding: 48px 20px 80px; }
+  footer { padding: 28px 20px; flex-direction: column; align-items: flex-start; }
+  .toggle { top: 14px; right: 14px; }
+}
 </style>
 </head>
 <body>
 
-<h1>利用規約</h1>
+<div class="toggle" onclick="toggleTheme()" role="button">
+  <div class="toggle__track"></div>
+  <span class="toggle__label" id="themeLabel">DARK</span>
+</div>
 
-<p>
-本利用規約は、当サービスの利用条件を定めるものです。ご利用にあたり、本規約に同意したものとみなします。
-</p>
+<nav>
+  <div class="nav__logo">MATCHING CONCIERGE</div>
+  <a href="index.html" class="nav__back">← TOP</a>
+</nav>
 
-<h2>第1条（サービス内容）</h2>
-<p>
-当サービスは、マッチングアプリの運用代行を行い、プロフィール作成、メッセージ対応、日程調整等を支援します。
-</p>
+<div class="page-hero">
+  <span class="page-hero__tag">TERMS</span>
+  <h1 class="page-hero__title">利用規約</h1>
+</div>
 
-<h2>第2条（成果について）</h2>
-<p>
-当サービスは成果の最大化を目指しますが、マッチ数、LINE交換、デート成立等の結果を保証するものではありません。
-</p>
+<div class="content">
+  <p class="content__intro">
+    本利用規約は、当サービスの利用条件を定めるものです。ご利用にあたり、本規約に同意したものとみなします。
+  </p>
 
-<h2>第3条（アカウントの利用）</h2>
-<p>
-当サービスは、お客様のマッチングアプリのアカウントを使用して運用を行います。アカウントの管理責任はお客様にあり、アカウントの停止、制限、削除等について当方は一切責任を負いません。
-</p>
+  <div class="article">
+    <span class="article__num">第1条</span>
+    <h2 class="article__title">サービス内容</h2>
+    <p class="article__body">当サービスは、マッチングアプリの運用代行を行い、プロフィール作成、メッセージ対応、日程調整等を支援します。</p>
+  </div>
 
-<h2>第4条（料金および支払い）</h2>
-<p>
-料金は週払い（毎週日曜締め・翌月曜請求）とし、請求後1日以内にお支払いいただきます。
-</p>
+  <div class="article">
+    <span class="article__num">第2条</span>
+    <h2 class="article__title">成果について</h2>
+    <p class="article__body">当サービスは成果の最大化を目指しますが、マッチ数、LINE交換、デート成立等の結果を保証するものではありません。</p>
+  </div>
 
-<h2>第5条（未払い時の対応）</h2>
-<p>
-未払いが発生した場合、当サービスは運用を停止します。また、未払いが継続した場合は契約を解除します。
-</p>
+  <div class="article">
+    <span class="article__num">第3条</span>
+    <h2 class="article__title">アカウントの利用</h2>
+    <p class="article__body">当サービスは、お客様のマッチングアプリのアカウントを使用して運用を行います。アカウントの管理責任はお客様にあり、アカウントの停止、制限、削除等について当方は一切責任を負いません。</p>
+  </div>
 
-<h2>第6条（返金について）</h2>
-<p>
-サービスの性質上、原則として返金には応じておりません。
-</p>
+  <div class="article">
+    <span class="article__num">第4条</span>
+    <h2 class="article__title">料金および支払い</h2>
+    <p class="article__body">料金は週払い（毎週日曜締め・翌月曜請求）とし、請求後1日以内にお支払いいただきます。</p>
+  </div>
 
-<h2>第7条（禁止事項）</h2>
-<p>
-以下の行為を禁止します。<br>
-・虚偽情報の提供<br>
-・違法行為への利用<br>
-・サービス運営を妨害する行為
-</p>
+  <div class="article">
+    <span class="article__num">第5条</span>
+    <h2 class="article__title">未払い時の対応</h2>
+    <p class="article__body">未払いが発生した場合、当サービスは運用を停止します。また、未払いが継続した場合は契約を解除します。</p>
+  </div>
 
-<h2>第8条（免責事項）</h2>
-<p>
-当サービスの利用により生じた損害について、当方は一切の責任を負いません。
-</p>
+  <div class="article">
+    <span class="article__num">第6条</span>
+    <h2 class="article__title">返金について</h2>
+    <p class="article__body">サービスの性質上、原則として返金には応じておりません。</p>
+  </div>
 
-<h2>第9条（規約の変更）</h2>
-<p>
-本規約は予告なく変更される場合があります。
-</p>
+  <div class="article">
+    <span class="article__num">第7条</span>
+    <h2 class="article__title">禁止事項</h2>
+    <p class="article__body">以下の行為を禁止します。</p>
+    <ul class="article__list">
+      <li>虚偽情報の提供</li>
+      <li>違法行為への利用</li>
+      <li>サービス運営を妨害する行為</li>
+    </ul>
+  </div>
 
-<h2>第10条（お問い合わせ）</h2>
-<p>
-お問い合わせは以下のメールアドレスまでお願いします。<br>
-mathingappunyoudaikou@gmail.com
-</p>
+  <div class="article">
+    <span class="article__num">第8条</span>
+    <h2 class="article__title">免責事項</h2>
+    <p class="article__body">当サービスの利用により生じた損害について、当方は一切の責任を負いません。</p>
+  </div>
 
+  <div class="article">
+    <span class="article__num">第9条</span>
+    <h2 class="article__title">規約の変更</h2>
+    <p class="article__body">本規約は予告なく変更される場合があります。</p>
+  </div>
+
+  <div class="article">
+    <span class="article__num">第10条</span>
+    <h2 class="article__title">お問い合わせ</h2>
+    <p class="article__body">
+      お問い合わせは以下のメールアドレスまでお願いします。<br>
+      <a href="mailto:mathingappunyoudaikou@gmail.com">mathingappunyoudaikou@gmail.com</a>
+    </p>
+  </div>
+
+  <a href="index.html" class="back-link">← TOPに戻る</a>
+</div>
+
+<footer>
+  <div class="footer__logo">MATCHING CONCIERGE</div>
+  <div class="footer__copy">© 2025 Matching Concierge. All rights reserved.</div>
+</footer>
+
+<script>
+function toggleTheme() {
+  const html = document.documentElement;
+  const lbl = document.getElementById('themeLabel');
+  const dark = html.dataset.theme === 'dark';
+  html.dataset.theme = dark ? 'light' : 'dark';
+  lbl.textContent = dark ? 'LIGHT' : 'DARK';
+}
+</script>
 </body>
 </html>
