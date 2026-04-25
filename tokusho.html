@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="ja" data-theme="dark">
 <head>
 <meta charset="UTF-8">
@@ -9,17 +8,17 @@
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400&family=Shippori+Mincho:wght@400;500;700&family=Cinzel:wght@400;600&display=swap" rel="stylesheet">
 <style>
 :root {
---gold: #C8A84B; --gold-light: #E5C76B;
---gold-border: rgba(200,168,75,0.28); --gold-dim: rgba(200,168,75,0.08);
---bg: #080807; --bg-card: #111009; --bg-alt: #0D0C0A;
---text: #EDE8DC; --text-mid: #A09070; --text-dim: #5A5040;
---line: rgba(200,168,75,0.2);
+  --gold: #C8A84B; --gold-light: #E5C76B;
+  --gold-border: rgba(200,168,75,0.28); --gold-dim: rgba(200,168,75,0.08);
+  --bg: #080807; --bg-card: #111009; --bg-alt: #0D0C0A;
+  --text: #EDE8DC; --text-mid: #A09070; --text-dim: #5A5040;
+  --line: rgba(200,168,75,0.2);
 }
 [data-theme="light"] {
---bg: #F8F5EE; --bg-card: #F0EBDE; --bg-alt: #F2EDE3;
---text: #18160F; --text-mid: #6B5E3A; --text-dim: #B0A080;
---line: rgba(160,120,40,0.25); --gold-dim: rgba(200,168,75,0.1);
---gold-border: rgba(160,120,40,0.3);
+  --bg: #F8F5EE; --bg-card: #F0EBDE; --bg-alt: #F2EDE3;
+  --text: #18160F; --text-mid: #6B5E3A; --text-dim: #B0A080;
+  --line: rgba(160,120,40,0.25); --gold-dim: rgba(200,168,75,0.1);
+  --gold-border: rgba(160,120,40,0.3);
 }
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
@@ -28,129 +27,126 @@ a { color: var(--gold); text-decoration: none; transition: opacity 0.3s; }
 a:hover { opacity: 0.7; }
 
 .toggle {
-position: fixed; top: 20px; right: 20px; z-index: 999;
-display: flex; align-items: center; gap: 10px;
-background: var(–bg-card); border: 1px solid var(–gold-border);
-padding: 7px 14px 7px 10px; border-radius: 99px; cursor: pointer;
-transition: border-color 0.3s; user-select: none;
+  position: fixed; top: 20px; right: 20px; z-index: 999;
+  display: flex; align-items: center; gap: 10px;
+  background: var(--bg-card); border: 1px solid var(--gold-border);
+  padding: 7px 14px 7px 10px; border-radius: 99px; cursor: pointer;
+  transition: border-color 0.3s; user-select: none;
 }
-.toggle:hover { border-color: var(–gold); }
-.toggle__track { width: 32px; height: 18px; background: var(–bg-alt); border: 1px solid var(–gold-border); border-radius: 99px; position: relative; }
-.toggle__track::after { content: ‘’; position: absolute; width: 12px; height: 12px; background: var(–gold); border-radius: 50%; top: 2px; left: 2px; transition: transform 0.3s; }
-[data-theme=“light”] .toggle__track::after { transform: translateX(14px); }
-.toggle__label { font-family: ‘Cinzel’, serif; font-size: 9px; letter-spacing: 0.18em; color: var(–gold); }
+.toggle:hover { border-color: var(--gold); }
+.toggle__track { width: 32px; height: 18px; background: var(--bg-alt); border: 1px solid var(--gold-border); border-radius: 99px; position: relative; }
+.toggle__track::after { content: ''; position: absolute; width: 12px; height: 12px; background: var(--gold); border-radius: 50%; top: 2px; left: 2px; transition: transform 0.3s; }
+[data-theme="light"] .toggle__track::after { transform: translateX(14px); }
+.toggle__label { font-family: 'Cinzel', serif; font-size: 9px; letter-spacing: 0.18em; color: var(--gold); }
 
 nav {
-position: fixed; inset: 0 0 auto 0; z-index: 900;
-padding: 18px 48px; display: flex; align-items: center; justify-content: space-between;
-background: linear-gradient(to bottom, var(–bg) 50%, transparent);
+  position: fixed; inset: 0 0 auto 0; z-index: 900;
+  padding: 18px 48px; display: flex; align-items: center; justify-content: space-between;
+  background: linear-gradient(to bottom, var(--bg) 50%, transparent);
 }
-.nav__logo { font-family: ‘Cinzel’, serif; font-size: 12px; letter-spacing: 0.28em; color: var(–gold); }
-.nav__back { font-family: ‘Cinzel’, serif; font-size: 10px; letter-spacing: 0.15em; color: var(–text-dim); transition: color 0.3s; }
-.nav__back:hover { color: var(–gold); opacity: 1; }
+.nav__logo { font-family: 'Cinzel', serif; font-size: 12px; letter-spacing: 0.28em; color: var(--gold); }
+.nav__back { font-family: 'Cinzel', serif; font-size: 10px; letter-spacing: 0.15em; color: var(--text-dim); transition: color 0.3s; }
+.nav__back:hover { color: var(--gold); opacity: 1; }
 
 .page-hero {
-padding: 140px 48px 60px;
-max-width: 900px; margin: 0 auto;
-border-bottom: 1px solid var(–line);
+  padding: 140px 48px 60px;
+  max-width: 900px; margin: 0 auto;
+  border-bottom: 1px solid var(--line);
 }
-.page-hero__tag { font-family: ‘Cinzel’, serif; font-size: 9px; letter-spacing: 0.36em; color: var(–gold); display: block; margin-bottom: 20px; }
-.page-hero__title { font-family: ‘Cormorant Garamond’, serif; font-size: clamp(32px, 5vw, 56px); font-weight: 300; letter-spacing: 0.02em; line-height: 1.2; }
+.page-hero__tag { font-family: 'Cinzel', serif; font-size: 9px; letter-spacing: 0.36em; color: var(--gold); display: block; margin-bottom: 20px; }
+.page-hero__title { font-family: 'Cormorant Garamond', serif; font-size: clamp(32px, 5vw, 56px); font-weight: 300; letter-spacing: 0.02em; line-height: 1.2; }
 
 .content { max-width: 900px; margin: 0 auto; padding: 60px 48px 120px; }
 
 /* テーブル */
 .table-wrap { overflow-x: auto; margin-bottom: 60px; }
 table { width: 100%; border-collapse: collapse; }
-th, td { padding: 18px 24px; text-align: left; border-bottom: 1px solid var(–line); font-size: 14px; line-height: 1.8; vertical-align: top; }
-th { width: 200px; font-weight: 500; color: var(–text-mid); letter-spacing: 0.06em; white-space: nowrap; }
-td { color: var(–text); }
-tr:first-child th, tr:first-child td { border-top: 1px solid var(–line); }
-tr:hover th, tr:hover td { background: var(–gold-dim); }
+th, td { padding: 18px 24px; text-align: left; border-bottom: 1px solid var(--line); font-size: 14px; line-height: 1.8; vertical-align: top; }
+th { width: 200px; font-weight: 500; color: var(--text-mid); letter-spacing: 0.06em; white-space: nowrap; }
+td { color: var(--text); }
+tr:first-child th, tr:first-child td { border-top: 1px solid var(--line); }
+tr:hover th, tr:hover td { background: var(--gold-dim); }
 
 .back-link {
-display: inline-flex; align-items: center; gap: 10px;
-border: 1px solid var(–gold-border); border-radius: 99px;
-padding: 12px 28px; font-family: ‘Cinzel’, serif; font-size: 10px;
-letter-spacing: 0.18em; color: var(–gold);
-transition: background 0.3s, border-color 0.3s;
+  display: inline-flex; align-items: center; gap: 10px;
+  border: 1px solid var(--gold-border); border-radius: 99px;
+  padding: 12px 28px; font-family: 'Cinzel', serif; font-size: 10px;
+  letter-spacing: 0.18em; color: var(--gold);
+  transition: background 0.3s, border-color 0.3s;
 }
-.back-link:hover { background: var(–gold-dim); border-color: var(–gold); opacity: 1; }
+.back-link:hover { background: var(--gold-dim); border-color: var(--gold); opacity: 1; }
 
-footer { background: var(–bg-alt); border-top: 1px solid var(–line); padding: 32px 48px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
-.footer__logo { font-family: ‘Cinzel’, serif; font-size: 11px; letter-spacing: 0.26em; color: var(–gold); }
-.footer__copy { font-size: 10px; color: var(–text-dim); letter-spacing: 0.1em; }
+footer { background: var(--bg-alt); border-top: 1px solid var(--line); padding: 32px 48px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
+.footer__logo { font-family: 'Cinzel', serif; font-size: 11px; letter-spacing: 0.26em; color: var(--gold); }
+.footer__copy { font-size: 10px; color: var(--text-dim); letter-spacing: 0.1em; }
 
 @media (max-width: 680px) {
-nav { padding: 16px 20px; }
-.page-hero { padding: 120px 20px 48px; }
-.content { padding: 48px 20px 80px; }
-th { width: 130px; font-size: 13px; padding: 14px 16px; }
-td { font-size: 13px; padding: 14px 16px; }
-footer { padding: 28px 20px; flex-direction: column; align-items: flex-start; }
-.toggle { top: 14px; right: 14px; }
+  nav { padding: 16px 20px; }
+  .page-hero { padding: 120px 20px 48px; }
+  .content { padding: 48px 20px 80px; }
+  th { width: 130px; font-size: 13px; padding: 14px 16px; }
+  td { font-size: 13px; padding: 14px 16px; }
+  footer { padding: 28px 20px; flex-direction: column; align-items: flex-start; }
+  .toggle { top: 14px; right: 14px; }
 }
 </style>
-
 </head>
 <body>
 
 <div class="toggle" onclick="toggleTheme()" role="button">
-<div class="toggle__track"></div>
-<span class="toggle__label" id="themeLabel">DARK</span>
+  <div class="toggle__track"></div>
+  <span class="toggle__label" id="themeLabel">DARK</span>
 </div>
 
 <nav>
-<a href="index.html" class="nav__logo">MATCHING CONCIERGE</a>
-<a href="index.html" class="nav__back">← TOP</a>
+  <a href="index.html" class="nav__logo">MATCHING CONCIERGE</a>
+  <a href="index.html" class="nav__back">← TOP</a>
 </nav>
 
 <div class="page-hero">
-<span class="page-hero__tag">LEGAL</span>
-<h1 class="page-hero__title">特定商取引法に<br>基づく表記</h1>
+  <span class="page-hero__tag">LEGAL</span>
+  <h1 class="page-hero__title">特定商取引法に<br>基づく表記</h1>
 </div>
 
 <div class="content">
-<div class="table-wrap">
-<table>
-<tr><th>事業者名</th><td>マッチングコンシェルジュ</td></tr>
-<tr><th>代表者名</th><td>松崎哲郎</td></tr>
-<tr><th>所在地</th><td>請求があった場合に遅滞なく開示します</td></tr>
-<tr><th>電話番号</th><td>請求があった場合に遅滞なく開示します</td></tr>
-<tr><th>メールアドレス</th><td>mathingappunyoudaikou@gmail.com</td></tr>
-<tr>
-<th>販売価格</th>
-<td>
-マッチ：税込み330円 / 件<br>
-LINE交換：税込み660円 / 件
-</td>
-</tr>
-<tr><th>商品代金以外の必要料金</th><td>マッチングアプリの有料会員費用が別途発生します</td></tr>
-<tr><th>支払方法</th><td>銀行振込またはPayPay</td></tr>
-<tr><th>支払時期</th><td>週払い（毎週日曜締め・翌月曜請求 / 1日以内の支払い・未払時は運用停止）</td></tr>
-<tr><th>サービス提供時期</th><td>契約後即時開始</td></tr>
-<tr><th>キャンセルについて</th><td>サービスの性質上、返金は対応しておりません</td></tr>
-</table>
-</div>
+  <div class="table-wrap">
+    <table>
+      <tr><th>事業者名</th><td>マッチングコンシェルジュ</td></tr>
+      <tr><th>代表者名</th><td>松崎哲郎</td></tr>
+      <tr><th>所在地</th><td>請求があった場合に遅滞なく開示します</td></tr>
+      <tr><th>電話番号</th><td>請求があった場合に遅滞なく開示します</td></tr>
+      <tr><th>メールアドレス</th><td>mathingappunyoudaikou@gmail.com</td></tr>
+      <tr>
+        <th>販売価格</th>
+        <td>
+          マッチ：税込み330円 / 件<br>
+          LINE交換：税込み660円 / 件
+        </td>
+      </tr>
+      <tr><th>商品代金以外の必要料金</th><td>マッチングアプリの有料会員費用が別途発生します</td></tr>
+      <tr><th>支払方法</th><td>銀行振込またはPayPay</td></tr>
+      <tr><th>支払時期</th><td>週払い（毎週日曜締め・翌月曜請求 / 1日以内の支払い・未払時は運用停止）</td></tr>
+      <tr><th>サービス提供時期</th><td>契約後即時開始</td></tr>
+      <tr><th>キャンセルについて</th><td>サービスの性質上、返金は対応しておりません</td></tr>
+    </table>
+  </div>
 
-<a href="index.html" class="back-link">← TOPに戻る</a>
-
+  <a href="index.html" class="back-link">← TOPに戻る</a>
 </div>
 
 <footer>
-<a href="index.html" class="footer__logo">MATCHING CONCIERGE</a>
-<div class="footer__copy">© 2025 Matching Concierge. All rights reserved.</div>
+  <a href="index.html" class="footer__logo">MATCHING CONCIERGE</a>
+  <div class="footer__copy">© 2025 MATCHING CONCIERGE（マチアプ運用代行）. All rights reserved.</div>
 </footer>
 
 <script>
 function toggleTheme() {
-const html = document.documentElement;
-const lbl = document.getElementById('themeLabel');
-const dark = html.dataset.theme === 'dark';
-html.dataset.theme = dark ? 'light' : 'dark';
-lbl.textContent = dark ? 'LIGHT' : 'DARK';
+  const html = document.documentElement;
+  const lbl = document.getElementById('themeLabel');
+  const dark = html.dataset.theme === 'dark';
+  html.dataset.theme = dark ? 'light' : 'dark';
+  lbl.textContent = dark ? 'LIGHT' : 'DARK';
 }
 </script>
-
 </body>
 </html>
