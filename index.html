@@ -505,6 +505,57 @@ a { color: inherit; text-decoration: none; }
 .footer__links a:hover { color: var(--gold); }
 .footer__copy { font-size: 10px; color: var(--text-dim); letter-spacing: 0.1em; }
 
+/* ── LIGHTBOX ── */
+.lightbox {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: rgba(0,0,0,0.92);
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+.lightbox.active {
+  display: flex;
+}
+.lightbox__img {
+  max-width: 90vw;
+  max-height: 90vh;
+  object-fit: contain;
+  border-radius: 8px;
+  overflow-y: auto;
+}
+.lightbox__close {
+  position: fixed;
+  top: 20px;
+  right: 24px;
+  font-size: 36px;
+  color: var(--gold);
+  cursor: pointer;
+  z-index: 10000;
+  line-height: 1;
+  font-family: 'Cinzel', serif;
+}
+.lightbox__prev,
+.lightbox__next {
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 48px;
+  color: var(--gold);
+  cursor: pointer;
+  z-index: 10000;
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300;
+  padding: 10px;
+  user-select: none;
+}
+.lightbox__prev { left: 16px; }
+.lightbox__next { right: 16px; }
+
+.gallery__grid img { cursor: zoom-in; }
+
 /* =============================================
    KEYFRAMES
 ============================================= */
@@ -608,6 +659,14 @@ a { color: inherit; text-decoration: none; }
 </style>
 </head>
 <body>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
+  <span class="lightbox__close" onclick="closeLightbox()">×</span>
+  <span class="lightbox__prev" onclick="changeLightbox(-1);event.stopPropagation()">‹</span>
+  <img class="lightbox__img" id="lightboxImg">
+  <span class="lightbox__next" onclick="changeLightbox(1);event.stopPropagation()">›</span>
+</div>
 
 <!-- TOGGLE -->
 <div class="toggle" onclick="toggleTheme()" role="button" aria-label="テーマ切替">
@@ -946,6 +1005,43 @@ a { color: inherit; text-decoration: none; }
 </footer>
 
 <script>
+// ライトボックス
+let lbImages = [];
+let lbIndex = 0;
+
+function initLightbox() {
+  const imgs = document.querySelectorAll('.gallery__grid img');
+  lbImages = Array.from(imgs).map(img => img.src);
+  imgs.forEach((img, i) => {
+    img.addEventListener('click', () => openLightbox(i));
+  });
+}
+
+function openLightbox(index) {
+  lbIndex = index;
+  document.getElementById('lightboxImg').src = lbImages[lbIndex];
+  document.getElementById('lightbox').classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeLightbox(e) {
+  if (e && e.target !== document.getElementById('lightbox') && !e.target.classList.contains('lightbox__close')) return;
+  document.getElementById('lightbox').classList.remove('active');
+  document.body.style.overflow = '';
+}
+
+function changeLightbox(dir) {
+  lbIndex = (lbIndex + dir + lbImages.length) % lbImages.length;
+  document.getElementById('lightboxImg').src = lbImages[lbIndex];
+}
+
+document.addEventListener('keydown', e => {
+  if (!document.getElementById('lightbox').classList.contains('active')) return;
+  if (e.key === 'ArrowRight') changeLightbox(1);
+  if (e.key === 'ArrowLeft') changeLightbox(-1);
+  if (e.key === 'Escape') { document.getElementById('lightbox').classList.remove('active'); document.body.style.overflow = ''; }
+});
+
 function showAllGallery() {
   document.querySelectorAll('.gallery__more').forEach(el => {
     el.style.display = 'block';
@@ -967,6 +1063,7 @@ const io = new IntersectionObserver(entries => {
   });
 }, { threshold: 0.1 });
 document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+initLightbox();
 </script>
 </body>
 </html>
