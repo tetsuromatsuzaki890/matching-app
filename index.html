@@ -725,17 +725,8 @@ a { color: inherit; text-decoration: none; }
         </div>
       </div>
       <div class="results__frame reveal d1">
-        <!--
-          実績画像を入れる場合:
-          <img src="your-screenshot.jpg" style="width:100%;height:100%;object-fit:cover;">
-          に差し替えてください
-        -->
         <div class="results__ph">
-          <div class="results__ph-grid">
-            <div></div><div></div><div></div>
-            <div></div><div></div><div></div>
-          </div>
-          <div class="results__ph-text">RESULTS IMAGE<br>実績画像を挿入</div>
+          <div class="results__ph-text">実績スクショ<br>下記ギャラリーで公開中👇</div>
         </div>
       </div>
     </div>
@@ -749,22 +740,63 @@ a { color: inherit; text-decoration: none; }
       <span class="sec__tag">PROOF</span>
       <h2 class="sec__title">実績トーク、全て本物です。</h2>
     </div>
-    <!--
-      画像の追加方法:
-      .gallery__tile を <img src="shot-XX.jpg"> に差し替えてください（最大20枚）
-    -->
-    <div class="gallery__grid reveal d1">
-      <div class="gallery__tile">01</div>
-      <div class="gallery__tile">02</div>
-      <div class="gallery__tile">03</div>
-      <div class="gallery__tile">04</div>
-      <div class="gallery__tile">05</div>
-      <div class="gallery__tile">06</div>
-      <div class="gallery__tile">07</div>
-      <div class="gallery__tile">08</div>
-      <div class="gallery__tile">09</div>
-      <div class="gallery__tile">10</div>
-      <!-- 11〜20枚目も同様に追加 -->
+    <div class="gallery__grid reveal d1" id="galleryGrid">
+      <img src="4860.png">
+      <img src="4861.png">
+      <img src="4862.png">
+      <img src="4863.png">
+      <img src="4864.png">
+      <img src="4865.png">
+      <img src="4866.png">
+      <img src="4867.png">
+      <img src="4868.png" class="gallery__more" style="display:none;">
+      <img src="4869.png" class="gallery__more" style="display:none;">
+      <img src="4870.png" class="gallery__more" style="display:none;">
+      <img src="4871.png" class="gallery__more" style="display:none;">
+      <img src="4872.png" class="gallery__more" style="display:none;">
+      <img src="4873.png" class="gallery__more" style="display:none;">
+      <img src="4874.png" class="gallery__more" style="display:none;">
+      <img src="4875.png" class="gallery__more" style="display:none;">
+      <img src="4876.png" class="gallery__more" style="display:none;">
+      <img src="4877.png" class="gallery__more" style="display:none;">
+      <img src="4878.png" class="gallery__more" style="display:none;">
+      <img src="4879.png" class="gallery__more" style="display:none;">
+      <img src="4880.png" class="gallery__more" style="display:none;">
+      <img src="4881.png" class="gallery__more" style="display:none;">
+      <img src="4882.png" class="gallery__more" style="display:none;">
+      <img src="4883.png" class="gallery__more" style="display:none;">
+      <img src="4884.png" class="gallery__more" style="display:none;">
+      <img src="4885.png" class="gallery__more" style="display:none;">
+      <img src="4886.png" class="gallery__more" style="display:none;">
+      <img src="4887.png" class="gallery__more" style="display:none;">
+      <img src="4888.png" class="gallery__more" style="display:none;">
+      <img src="4889.png" class="gallery__more" style="display:none;">
+      <img src="4890.png" class="gallery__more" style="display:none;">
+      <img src="4891.png" class="gallery__more" style="display:none;">
+      <img src="4892.png" class="gallery__more" style="display:none;">
+      <img src="4893.png" class="gallery__more" style="display:none;">
+      <img src="4894.png" class="gallery__more" style="display:none;">
+      <img src="4896.png" class="gallery__more" style="display:none;">
+      <img src="4897.png" class="gallery__more" style="display:none;">
+      <img src="4898.png" class="gallery__more" style="display:none;">
+      <img src="4899.png" class="gallery__more" style="display:none;">
+      <img src="4900.png" class="gallery__more" style="display:none;">
+      <img src="4901.png" class="gallery__more" style="display:none;">
+      <img src="4902.png" class="gallery__more" style="display:none;">
+    </div>
+
+    <div style="text-align:center;margin-top:32px;" id="galleryBtnWrap">
+      <button onclick="showAllGallery()" style="
+        display:inline-flex;align-items:center;gap:10px;
+        border:1px solid var(--gold-border);border-radius:99px;
+        padding:14px 36px;background:var(--gold-dim);
+        font-family:'Shippori Mincho',serif;font-size:13px;
+        letter-spacing:0.12em;color:var(--gold);cursor:pointer;
+        transition:all 0.3s;
+      " onmouseover="this.style.background='rgba(200,168,75,0.15)'" 
+         onmouseout="this.style.background='var(--gold-dim)'">
+        全43枚を見る ↓
+      </button>
     </div>
     <p class="gallery__cap reveal">※ 個人情報は全て黒塗り処理済み</p>
   </div>
@@ -914,6 +946,13 @@ a { color: inherit; text-decoration: none; }
 </footer>
 
 <script>
+function showAllGallery() {
+  document.querySelectorAll('.gallery__more').forEach(el => {
+    el.style.display = 'block';
+  });
+  document.getElementById('galleryBtnWrap').style.display = 'none';
+}
+
 function toggleTheme() {
   const html = document.documentElement;
   const lbl  = document.getElementById('themeLabel');
